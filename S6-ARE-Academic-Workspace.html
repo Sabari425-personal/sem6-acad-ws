@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>S6 ARE — Academic Workspace</title>
+<style>
+:root{--bg:#f6f7f9;--sf:#fff;--sf2:#eef1f5;--tx:#141922;--mu:#606a7a;--bd:#e0e5ec;--ac:#2f6fed;--hol:#c2410c;--exm:#b3261e;--evt:#7c3aed;--spc:#0f766e;--ok:#0f7b4f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1116;--sf:#161a21;--sf2:#1e242d;--tx:#e6eaf0;--mu:#97a2b2;--bd:#2a313b;--ac:#7aa2f7;--hol:#f08a5d;--exm:#f2777a;--evt:#b794f6;--spc:#4dc0b5;--ok:#4ade80}}
+:root[data-theme="dark"]{--bg:#0e1116;--sf:#161a21;--sf2:#1e242d;--tx:#e6eaf0;--mu:#97a2b2;--bd:#2a313b;--ac:#7aa2f7;--hol:#f08a5d;--exm:#f2777a;--evt:#b794f6;--spc:#4dc0b5;--ok:#4ade80}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--ac)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--sf);border-bottom:1px solid var(--bd)}
+.hd{display:flex;align-items:center;gap:10px;padding:10px 14px;max-width:1180px;margin:0 auto}
+.brand{font-weight:650;letter-spacing:-.01em;white-space:nowrap}
+.brand small{display:block;font-weight:400;color:var(--mu);font-size:11px}
+nav{display:flex;gap:2px;overflow-x:auto;padding:0 10px 8px;max-width:1180px;margin:0 auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;background:none;border:0;color:var(--mu);font:inherit;font-size:14px;padding:6px 11px;border-radius:7px;cursor:pointer}
+nav button[aria-current="page"]{background:var(--sf2);color:var(--tx);font-weight:600}
+nav button:hover{color:var(--tx)}
+.sp{margin-left:auto}
+.ib{background:var(--sf2);border:1px solid var(--bd);color:var(--mu);border-radius:8px;padding:7px 10px;cursor:pointer;font:inherit;font-size:13px;min-height:38px}
+.ib:hover{color:var(--tx)}
+main{max-width:1180px;margin:0 auto;padding:16px 14px 70px}
+h2{font-size:19px;margin:0 0 4px}
+h3{font-size:15px;margin:0 0 8px}
+.sub{color:var(--mu);font-size:13px;margin:0 0 14px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin-bottom:6px}
+.big{font-size:22px;font-weight:650;letter-spacing:-.02em}
+.mu{color:var(--mu);font-size:13px}
+.bar{height:6px;background:var(--sf2);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;background:var(--ac)}
+ul.l{list-style:none;margin:0;padding:0}
+ul.l li{padding:9px 0;border-top:1px solid var(--bd);display:flex;gap:10px;align-items:flex-start}
+ul.l li:first-child{border-top:0}
+.tag{font-size:11px;padding:2px 7px;border-radius:99px;background:var(--sf2);color:var(--mu);white-space:nowrap}
+.t-holiday{color:var(--hol)}.t-exam{color:var(--exm)}.t-event{color:var(--evt)}.t-special{color:var(--spc)}.t-milestone{color:var(--ac)}
+.dot{width:7px;height:7px;border-radius:99px;flex:0 0 auto;margin-top:7px;background:currentColor}
+.now{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac) inset}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--bd);border-radius:12px;background:var(--sf)}
+th,td{border:1px solid var(--bd);padding:6px;text-align:center;vertical-align:middle}
+th{background:var(--sf2);font-weight:600;font-size:11px;color:var(--mu);white-space:nowrap}
+td.f{background:var(--sf2);font-weight:600;color:var(--tx)}
+td.free{background:transparent;color:var(--mu)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{background:var(--sf);border:1px solid var(--bd);border-radius:99px;padding:6px 13px;font-size:13px;cursor:pointer;color:var(--mu);min-height:34px}
+.chip[aria-pressed="true"]{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal .hdr{font-size:11px;color:var(--mu);text-align:center;padding:4px 0}
+.cell{background:var(--sf);border:1px solid var(--bd);border-radius:8px;min-height:58px;padding:5px;text-align:left;cursor:pointer;font:inherit;color:var(--tx);display:flex;flex-direction:column;gap:3px;overflow:hidden}
+.cell:hover{border-color:var(--ac)}
+.cell.off{opacity:.35}
+.cell.today{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac) inset}
+.cell .d{font-size:12px;font-weight:600}
+.cell .m{font-size:10px;line-height:1.25;overflow:hidden}
+.cell.hol .d{color:var(--hol)}
+input,select,textarea{font:inherit;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:9px 10px;width:100%;min-height:40px}
+textarea{min-height:110px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.row>*{flex:1 1 130px}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:9px 15px;font:inherit;font-weight:600;cursor:pointer;flex:0 0 auto;min-height:40px}
+.btn.g{background:var(--sf2);color:var(--tx);border:1px solid var(--bd)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.ov{position:fixed;inset:0;background:rgba(10,12,16,.55);z-index:40;display:flex;justify-content:center;padding:8vh 14px 14px}
+.ov[hidden]{display:none}
+.pan{background:var(--sf);border:1px solid var(--bd);border-radius:14px;width:100%;max-width:620px;max-height:80vh;overflow:auto;padding:14px}
+.done{text-decoration:line-through;color:var(--mu)}
+kbd{background:var(--sf2);border:1px solid var(--bd);border-radius:5px;padding:1px 6px;font:inherit;font-size:12px}
+details{border-top:1px solid var(--bd);padding:9px 0}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+.sec{margin-top:16px}
+.hide{display:none}
+@media(max-width:700px){.wk{display:none}.brand small{display:none}main{padding-bottom:20px}}
+@media(prefers-reduced-motion:no-preference){.cell,.chip,nav button{transition:background .12s,border-color .12s,color .12s}}
+/* ===== v3 themes, type scale, layout ===== */
+:root[data-theme="slate"]{--bg:#0f172a;--sf:#1a2336;--sf2:#243049;--tx:#e8edf7;--mu:#9aa8c2;--bd:#31405c;--ac:#60a5fa;--hol:#fb923c;--exm:#f87171;--evt:#c4b5fd;--spc:#5eead4;--ok:#4ade80}
+:root[data-theme="sepia"]{--bg:#f5efe3;--sf:#fffaf1;--sf2:#ece2d0;--tx:#3b3226;--mu:#7a6a55;--bd:#ddd0b8;--ac:#9a5b2e;--hol:#b4531b;--exm:#a32e26;--evt:#7a4b9c;--spc:#1f6f63;--ok:#2f6b3d}
+:root[data-theme="forest"]{--bg:#0d1512;--sf:#15201b;--sf2:#1e2c25;--tx:#e3efe7;--mu:#93aa9c;--bd:#2a3b32;--ac:#4ade80;--hol:#fbbf24;--exm:#f87171;--evt:#a5b4fc;--spc:#2dd4bf;--ok:#86efac}
+:root[data-theme="rose"]{--bg:#fdf6f7;--sf:#fff;--sf2:#f7e8ec;--tx:#2b1b20;--mu:#7d5f68;--bd:#eed5dc;--ac:#be3455;--hol:#c2410c;--exm:#9f1239;--evt:#7c3aed;--spc:#0f766e;--ok:#15803d}
+:root[data-theme="contrast"]{--bg:#000;--sf:#0b0b0b;--sf2:#1a1a1a;--tx:#fff;--mu:#c8c8c8;--bd:#4a4a4a;--ac:#ffd400;--hol:#ff9d4d;--exm:#ff6b6b;--evt:#d0a2ff;--spc:#4ee0cf;--ok:#6ef08a}
+:root[data-font="serif"] body{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;letter-spacing:.005em}
+:root[data-font="round"] body{font-family:"Nunito","Segoe UI Variable",ui-rounded,"SF Pro Rounded",system-ui,sans-serif}
+:root[data-fs="l"] body{font-size:16.5px;line-height:1.62}
+:root[data-fs="xl"] body{font-size:18px;line-height:1.68}
+.clock{margin-left:auto;font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--mu);text-align:right;line-height:1.25;white-space:nowrap}
+.clock b{display:block;color:var(--tx);font-size:15px;font-weight:650}
+.sp{margin-left:8px}
+.boxes{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(215px,1fr))}
+.box{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:left;font:inherit;color:var(--tx);cursor:pointer;display:flex;flex-direction:column;gap:5px}
+.box:hover{border-color:var(--ac)}
+.box .dt{font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:650}
+.box .ti{font-weight:600;font-size:14px;line-height:1.35}
+.box .lo{font-size:12px;color:var(--mu)}
+.box.pastb{opacity:.5}
+.wbar{display:flex;height:9px;border-radius:99px;overflow:hidden;background:var(--sf2);margin:8px 0 4px}
+.wbar i{display:block;height:100%}
+.w0{background:var(--ac)}.w1{background:var(--evt)}.w2{background:var(--spc)}.w3{background:var(--hol)}.w4{background:var(--ok)}
+.lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--mu)}
+.lg span{display:flex;align-items:center;gap:5px}
+.sw{width:9px;height:9px;border-radius:3px;display:inline-block}
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid var(--bd);background:var(--sf2);color:var(--mu);margin:0 4px 4px 0}
+.pill.on{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px;margin:0}
+.kv dt{color:var(--mu)}.kv dd{margin:0}
+.ct{display:block;width:100%;text-align:left;font:inherit;color:var(--tx);cursor:pointer}
+a.ib{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.box.contact{outline-offset:2px}
+
+/* Semester VI title-hover import/export controls */
+.brand-wrap{display:flex;align-items:center;gap:7px;min-width:0}
+.brand{cursor:default}
+.io-tools{display:flex;align-items:center;gap:5px;opacity:0;visibility:hidden;transform:translateX(-5px);transition:opacity .18s ease,transform .18s ease,visibility .18s}
+.brand-wrap:hover .io-tools,.brand-wrap:focus-within .io-tools{opacity:1;visibility:visible;transform:translateX(0)}
+.io-dot{width:28px;height:28px;min-width:28px;min-height:28px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:17px;line-height:1}
+.tt-cell{min-width:92px;line-height:1.3;padding:8px 5px}
+.tt-code{font-size:10px;color:var(--mu);font-weight:400;margin-top:3px;line-height:1.25}
+.tt-cell strong{font-size:11px;font-weight:650}
+@media(max-width:700px){.io-tools{opacity:1;visibility:visible;transform:none}.io-dot{width:26px;height:26px;min-width:26px;min-height:26px}}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="brand-wrap"><div class="brand" id="brandTitle">S6 ARE Workspace<small>B.Tech Automation &amp; Robotics · Year III · Even Sem 2026–2027 · Room E211</small></div><div class="io-tools" aria-label="Timetable file actions"><button class="ib io-dot" id="btnExport" title="Export timetable CSV" aria-label="Export timetable CSV">↥</button><button class="ib io-dot" id="btnImport" title="Import timetable CSV" aria-label="Import timetable CSV">↧</button><input id="csvFile" type="file" accept=".csv,text/csv" hidden></div></div>
+    <button class="ib sp" id="btnSearch" title="Search ( / )">Search</button>
+    <button class="ib" id="btnTheme" title="Theme">Theme</button>
+    <button class="ib" id="btnHelp" title="Shortcuts ( ? )">?</button>
+  </div>
+  <nav id="nav"></nav>
+</header>
+<main id="view" tabindex="-1"></main>
+
+<div class="ov" id="ovSearch" hidden><div class="pan">
+  <input id="q" placeholder="Search courses, faculty, classes, events, tasks…" autocomplete="off">
+  <ul class="l" id="qr" style="margin-top:10px"></ul>
+</div></div>
+<div class="ov" id="ovDay" hidden><div class="pan" id="dayPan"></div></div>
+<div class="ov" id="ovHelp" hidden><div class="pan">
+  <h3>Keyboard shortcuts</h3>
+  <ul class="l">
+    <li><kbd>/</kbd><span>Global search</span></li><li><kbd>D</kbd><span>Dashboard</span></li>
+    <li><kbd>T</kbd><span>Timetable</span></li><li><kbd>C</kbd><span>Calendar</span></li>
+    <li><kbd>K</kbd><span>Courses</span></li><li><kbd>E</kbd><span>Exams</span></li>
+    <li><kbd>R</kbd><span>Resources</span></li><li><kbd>N</kbd><span>New task</span></li>
+    <li><kbd>←</kbd><kbd>→</kbd><span>Previous / next month (Calendar)</span></li>
+    <li><kbd>Shift</kbd>+<kbd>T</kbd><span>Jump to today</span></li>
+    <li><kbd>Esc</kbd><span>Close</span></li>
+  </ul>
+  <p class="mu">Shortcuts are ignored while you are typing in a field.</p>
+</div></div>
+
+<script>
+"use strict";
+/* ---------- source data: transcribed from the uploaded timetable, academic calendar and syllabus ---------- */
+const SL=[[480,530],[530,580],[580,630],[645,695],[695,745],[745,795],[795,845],[845,895],[895,945],[945,995],[995,1045],[1045,1095]];
+const C={"23MEE306":{"n":"Optimization Techniques","lt":"3-0-3-4","f":"Dr Ramesh Kumar K","fl":"Dr Rameshkumar K / Dr Devarajan K","sy":"21MAT306","room":"E211","co":["CO1: Formulate the engineering problems as an optimization problem.","CO2: Apply necessary and sufficient conditions for a given optimization problem for optimality.","CO3: Select appropriate solution methods and strategies for solving an optimization problem and interpret and analyze the solution obtained by optimization algorithms.","CO4: Justify and apply the use of modern heuristic algorithms for solving optimization problems.","CO5: Solve Engineering Design and Manufacturing related optimization problem using software tools."],"u":["Unit 1 — Introduction: Engineering applications; statement of an optimization problem; classifications of optimization problems; optimal problem formulation; optimality criteria; classical optimization techniques; Kuhn–Tucker (KT) optimality conditions.","Unit 2 — Introduction to Linear Programming Problem: standard form of an LPP; graphical solution; Simplex Method; Revised Simplex Method; duality in LPP; transportation problem.","Unit 3 — Non-linear programming: one-dimensional minimization; unconstrained and constrained optimization techniques; transformation methods; interior and exterior penalty function methods; convergence and divergence of optimization algorithms; complexity of algorithms.","Unit 4 — Modern methods in optimization: Genetic Algorithm; Simulated Annealing; Particle Swarm Optimization; Neural Network based optimization; optimization of fuzzy systems; introduction to multi-objective optimization."],"lab":["Implement optimization algorithms in Matlab / R / Python and solve linear, non-linear, multi-objective, unconstrained and constrained optimization problems."],"e":[["Periodical 1",10],["Periodical 2",10],["Continuous Assessment (CA) — Theory",15],["Continuous Assessment (CA) — Lab",30],["End Semester",35]],"b":["Rao, S.S. (2019), Engineering Optimization: Theory and Practice, John Wiley & Sons.","Deb, K. (2012), Optimization for Engineering Design: Algorithms and Examples, PHI Learning Pvt. Ltd.","Arora, R.K. (2019), Optimization: Algorithms and Applications, Chapman and Hall/CRC."],"note":"Timetable code 23MEE306; syllabus document code 21MAT306. The syllabus content is shown under the timetable course title."},"23ARE311":{"n":"Introduction to Machine Learning","lt":"3-0-3-4","f":"Dr Pushparajan M","fl":"Dr Pushparajan M / Dr Srinivaas A / TA","sy":"21ARE311","room":"E211","co":["CO1: Able to generate, analyze and interpret data summaries.","CO2: Able to carry out analysis on machine learning algorithms.","CO3: Able to design and implement classifiers for machine learning applications.","CO4: Able to apply machine learning algorithm in robotics."],"u":["Unit 1 — Basic motivation and examples of machine learning applications; supervised and unsupervised learning; review of linear algebra, vector spaces, linear transformations, eigenvalues and vectors; review of probability theory, random variables and probability distributions; linear regression in one variable; gradient descent; regression in multiple variables; linear models for classification; discriminant functions; logistic regression; regularization; overfitting and underfitting; regularized linear and logistic regression.","Unit 2 — Neural network model representation; feed-forward network functions; network training; back-propagation algorithm; clustering and mixture densities; K-means clustering; expectation maximization; spectral clustering; dimensionality reduction; Principal Component Analysis (PCA); singular value decomposition.","Unit 3 — Reinforced learning; fundamentals of deep learning; application of machine learning in robotics."],"lab":["Lab exercises on vector algebra, probability theory and regression analysis for supervised and unsupervised learning.","Lab exercises on network functions, back-propagation and spectral decomposition.","Lab exercises on reinforcement learning and deep learning applied to robotic systems."],"e":[["Periodical 1",10],["Periodical 2",10],["Continuous Assessment (CA) — Theory",15],["Continuous Assessment (CA) — Lab",30],["End Semester",35]],"b":["Tom M. Mitchell, Machine Learning, McGraw Hill, 1997.","Ethem Alpaydin, Introduction to Machine Learning, MIT Press, 2014.","C. M. Bishop, Pattern Recognition and Machine Learning, Springer, 2006.","A. C. Müller and S. Guido, Introduction to Machine Learning with Python, O’Reilly Media, 2016.","A. C. Faul, A Concise Introduction to Machine Learning, CRC Press, 2020."],"note":"Timetable code 23ARE311; syllabus document code 21ARE311. The timetable separately labels the Monday practical block as CP Lab II."},"23ARE312":{"n":"Real Time Operating Systems","lt":"3-0-0-3","f":"Dr Subodhraj M S","room":"E211","co":["CO1: Identify the basic concepts in real time systems.","CO2: Describe various services provided by the RTOS Kernel.","CO3: Analyse various algorithms of RTOS kernel services.","CO4: Develop real time applications using ROS framework."],"u":["Unit 1 — Overview of operating system concepts; GPOS functionalities; OS architecture (monolithic, microkernel, layered, exokernel and hybrid kernel structures); evolution of operating systems; introduction to real-time systems; RTOS basic architecture; RTOS vs GPOS; POSIX standards; RTOS kernel and kernel services.","Unit 2 — Task management: tasks, processes and threads; task attributes and types; task states and transitions; preemption-context switching; task control block; real-time scheduling (clock-driven and priority-driven); uniprocessor scheduling; multiprocessor scheduling; blocking, deadlock and avoidance strategies; priority inversion and solutions; task communication and synchronization (semaphores, mutex, mailbox, queue, pipes); timer management; interrupt handling; memory management (cache and virtual memory); input-output handling.","Unit 3 — Familiarization of ROS: architecture, sensors and actuators supported, computing platforms; creating, building and modifying packages and writing/building source code and nodes; publishers, subscriber nodes, service servers and clients, action servers and clients; programming with ROS; ROS launch, 3D visualization tool (RViz), design and development of graphical user interface in ROS; communication between robot client and server; analysis of data packet loss; visualization of robot and their movements in RViz."],"b":["Qing Li, Caroline Yao, Real-Time Concepts for Embedded Systems, CRC Press, 2010.","Douglas W. H. L. H. Hart, Jeff Barnett, Vijay Montanari and Alanson G. Williams, A Practical Introduction to Real-time Systems for Undergraduate Engineering, 2015.","Jane W. S. Liu, Real-Time Systems, Pearson, 2000.","Lentin Joseph, Robot Operating System (ROS) for Absolute Beginners: Robotics Programming Made Easy, Apress, 2018.","Kumar Bipin, Robot Operating System Cookbook, Packt Publishing, 2018."],"e":[["Periodical 1",15],["Periodical 2",15],["Continuous Assessment (CA)",20],["End Semester",50]]},"23ARE313":{"n":"Industrial Process Automation","lt":"2-0-3-3","f":"Dr Rakesh Kumar S","fl":"Dr Rakesh Kumar S / Dr Amudhan A M","sy":"21ARE313","room":"E211","co":["CO1: Develop the PLC program for the given application.","CO2: Interface the input and output devices with PLC.","CO3: Understand the concepts of SCADA and its applications.","CO4: Understand the communications and networking of distributed control systems.","CO5: Design a graphical system using Virtual Instrumentation software."],"u":["Unit 1 — Programmable Logic Controllers: introduction; types of PLC; CPU unit architecture; memory classification; input/output devices and interfacing; digital-analog modules; communication modules; special function modules; basic Ladder Logic; electrical wiring diagram; scan cycle; programming languages for PLC; PLC module addressing; registers; basic relay instructions; timer-counter instructions; math functions; data handling and program control instructions.","Unit 2 — SCADA: introduction to computer-based industrial automation; Direct Digital Control (DDC); Distributed Control System (DCS) and supervisory control and data acquisition (SCADA) based architectures and HMI components; HMI development; data processing; control algorithm; programming; data acquisition; PLCs/RTUs; database connectivity and report generating; OPC configuration with RTUs (PLC); cyber security for industrial control systems.","Unit 3 — Distributed Control System: Local Control Unit (LCU) architecture; LCU process interfacing issues; block diagram and overview of DCS; historical LCU security design approaches; networking of DCS; introduction to communication protocols — Profibus, Field bus, HART protocols; data gathering, data analytics, real-time analysis of data stream from DCS, historian build, integration of business inputs with process data. Introduction to Virtual Instrumentation: traditional and virtual instruments; data types; G-programming; concept of VIs and sub-VIs; graphs and charts; local and global variables; string and file I/O; control loops and structures; sequence structures; data acquisition system; signal processing and analysis; graphical system design."],"lab":["Ladder programming for boolean operations and mathematical operations.","Interfacing of electro-pneumatic system with PLC.","Speed control of DC motor using PLC interfacing HMI with PLC.","Interfacing PLC real-time tag with SCADA.","Flow and pressure measurement and control using SCADA.","Develop a SCADA screen program for process plant operation.","Develop a database and recipe tag base in SCADA.","Basic programming using Virtual Instrumentation software.","Data acquisition and processing using Virtual Instrumentation software.","Graphical system design using Virtual Instrumentation software."],"b":["Lukas M.P., Distributed Control Systems, Van Nostrand Reinhold Co., 1986.","Petruzella, Frank D., Programmable Logic Controllers, Tata McGraw-Hill Education, 2005.","Gupta, Virtual Instrumentation Using LabVIEW 2E, Tata McGraw-Hill Education, 2010."],"e":[["Periodical 1",10],["Periodical 2",10],["Continuous Assessment (CA) — Theory",10],["Continuous Assessment (CA) — Lab",40],["End Semester",30]],"note":"Timetable code 23ARE313; syllabus document code 21ARE313."},"23LSE311":{"n":"Life Skills for Engineers IV","f":"Mr Bhaskar M (SS) / Dr C Santhosh Kumar (APT) / Ms Priyanka K (VER)","room":"E211","note":"The timetable lists Life Skills for Engineers IV. The uploaded syllabus instead contains 19SSK311 Soft Skills – III; these are kept as separate entries because the source does not establish that they are the same course."},"23LAW300":{"n":"Indian Constitution","room":"—","note":"Listed in the Semester VI timetable course table. No faculty member, slot, syllabus units or evaluation details are supplied in the uploaded documents."},"23ARE399":{"n":"Mini Project","f":"Dr Siva Shankar G / TA","room":"E211","sy":"21ARE399","lt":"0-0-3-1","co":["CO1: Design a hardware solution to a real-life problem/application.","CO2: Implement the hardware solution by developing a working model / prototype.","CO3: Use software tools required for the design and implementation of hardware solutions.","CO4: Communicate the designs and work procedure through presentations and reports."],"u":["The mini project is part of the coursework to demonstrate students’ abilities and specialization. It provides an opportunity to practise and develop a prototype/hardware/software solution for a real-world problem in an integrated manner using techniques learned in previous semesters. It supports identification of a clear problem statement for the final-year major project.","Projects should be hardware-design integrated with software and/or fabrication in Automation and Robotics. Work may be individual or in groups of up to five. Progress is monitored at regular intervals. Students identify a project based on their interests and may approach faculty members for guidance. The faculty coordinator reviews progress weekly. End-semester evaluation is based on design, working model, report, presentation and viva-voce."],"e":[["Continuous Internal Examination (CIE)",40],["Semester End Examination (SEE)",60]],"note":"Timetable code 23ARE399; syllabus document code 21ARE399. The timetable combines this activity with the Industrial Process Automation lab block."},"23LIV490":{"n":"Live in Labs II","room":"—","note":"Listed in the Semester VI timetable course table with an asterisk, but no slot, faculty, syllabus or assessment details are supplied in the uploaded documents."},"23ARE342":{"n":"Robot Operating System","f":"Dr Siva Shankar G","fl":"Dr Siva Shankar G / TA","room":"E211","note":"Professional Elective I option. The syllabus document does not include a course-specific ROS elective syllabus."},"23ARE337":{"n":"Autonomous Vehicles 1","f":"Dr Rammohan S","room":"E209","note":"Professional Elective I option. The syllabus document does not include a course-specific Autonomous Vehicles syllabus."},"23ARE363":{"n":"Smart Manufacturing","f":"Dr Sumesh A","room":"E211","note":"Professional Elective II option. The syllabus document does not include a course-specific Smart Manufacturing syllabus."},"23ARE362":{"n":"Industry 4.0","f":"Dr Ramachandran K I","room":"E302","note":"Professional Elective II option. The syllabus document does not include a course-specific Industry 4.0 syllabus."},"23MEE335":{"n":"Modelling and Simulation of Engineering Systems","f":"Dr Padmanaban R","room":"E209","note":"Professional Elective II option. The syllabus document does not include a course-specific Modelling and Simulation syllabus."},"19SSK311":{"n":"Soft Skills – III (syllabus reference)","lt":"1-0-3-2","room":"—","co":["CO1: Prepare a suitable resume (including a video resume) and present oneself confidently in introductions and interviews.","CO2: Analyse interview questions, compose correct responses and respond professionally using positive attitude and courteous communication.","CO3: Interpret, critically analyse and solve logical reasoning questions.","CO4: Understand and use words, idioms and phrases, interpret standard expressions and compose sentences.","CO5: Decide, conclude, identify and choose correct grammatical construction.","CO6: Examine, interpret and investigate arguments using inductive and deductive reasoning."],"u":["Team work — value of team work in organisations; definition of a team; why team; elements of leadership; disadvantages and stages of team formation; group development activities; orientation, internal problem solving, growth and productivity, evaluation and control; effective team building; roles, empowerment, communication, team effectiveness criteria and outcomes.","Facing an interview — foundation in core subject; industry orientation and knowledge about the company; professional personality; communication skills; activities before interview; upon entering the interview room; during and at the end; mock interviews.","Advanced grammar — parallel construction, dangling modifiers, active and passive voices, syllogisms and critical reasoning; listening comprehension advanced.","Reading comprehension advanced — approach to advanced-level reading and comprehension passages; exercises on competitive exam questions.","Problem solving level IV — geometry, trigonometry, heights and distances, coordinate geometry, mensuration; solving campus recruitment papers and competitive examination papers.","Speed mathematics and lateral thinking — tackling aptitude problems asked in interviews; techniques to remember, quick checking, elimination of options, estimating and predicting correct answers; time management and test-taking strategies."],"b":["A Communicative Grammar of English, Geoffrey Leech and Jan Svartvik, Longman.","Effective Team Building: How to make a winning team, John Adair, Pan Books.","Corporate Soft Skills, Rupa & Co.","The Hard Truth about Soft Skills, Amazon Publication.","Data Interpretation, R. S. Aggarwal, S. Chand.","Logical Reasoning and Data Interpretation, Nishit K Sinha."],"note":"This syllabus entry is coded 19SSK311 and titled Soft Skills – III in the uploaded document. It is not silently substituted for timetable code 23LSE311 Life Skills for Engineers IV."},"19MNG300":{"n":"Disaster Management (syllabus reference)","room":"—","co":["CO1: Analyse relationship between Development and Disasters.","CO2: Understand impact of Disasters and realization of societal responsibilities.","CO3: Apply Disaster management principles."],"u":["Unit 1 — Introduction, concepts and definitions; disaster classification (natural disasters including floods, drought, cyclones, volcanoes, earthquakes, tsunami, landslides, coastal erosion, soil erosion and forest fires; man-made disasters including industrial pollution, artificial flooding in urban areas, nuclear radiation, chemical spills, transportation accidents and terrorist strikes).","Unit 2 — Hazard and vulnerability profile of India, mountain and coastal areas, ecological fragility; factors affecting vulnerability such as developmental projects and environmental modifications; disaster impacts (environmental, physical, social, ecological, economic and political), health and psychosocial issues, demographic aspects, hazard locations, global and national disaster trends and climate change.","Unit 3 — Disaster Risk Reduction (DRR): disaster management cycle; prevention, mitigation, preparedness, relief and recovery; structural and non-structural measures; risk analysis, vulnerability and capacity assessment; early warning systems; post-disaster environmental response (water, sanitation, food safety, waste management, disease control, security and communications); roles and responsibilities of government, community, local institutions, NGOs and other stakeholders; policies and legislation for disaster risk reduction; DRR programmes in India and activities of the National Disaster Management Authority."],"b":["R. Subramanian, Disaster Management, Vikas Publishing House, 2018.","Bhandari and Rajendra Kumar, Disaster Education and Management, Springer, 2016.","NIDM publications and National Disaster Management Authority resources.","Pradeep Sahni, Disaster Risk Reduction in South Asia, Prentice Hall, 2004."],"e":[["Continuous Assessment (CA)",100]],"note":"This course appears in the uploaded Semester 6 syllabus (code 19MNG300) but is not listed in the VI Sem ARE timetable."},"MENT":{"n":"Mentoring — VI Semester ARE","room":"—","note":"Timetable activity at Slot 4 on Tuesday. No faculty member is specified in the timetable block."},"PE1":{"n":"Professional Elective I — Robot Operating System / Autonomous Vehicles 1","room":"See option rooms","note":"Select one option: 23ARE342 Robot Operating System (E211), taught by Dr Siva Shankar G; or 23ARE337 Autonomous Vehicles 1 (E209), taught by Dr Rammohan S. The timetable lists both options in the same PE-I slot."},"PE2":{"n":"Professional Elective II — Modelling and Simulation / Smart Manufacturing / Industry 4.0","room":"See option rooms","note":"Select one option: 23MEE335 Modelling and Simulation of Engineering Systems (E209), taught by Dr Padmanaban R; 23ARE363 Smart Manufacturing (E211), taught by Dr Sumesh A; or 23ARE362 Industry 4.0 (E302), taught by Dr Ramachandran K I. The timetable lists all options in the same PE-II slot."},"MLLAB":{"n":"Introduction to Machine Learning — CP Lab II","fl":"Dr Pushparajan M / Dr Srinivaas A / TA","room":"CP Lab II","note":"Practical block labelled CP Lab II in the Monday timetable; spans Slots 8–10."},"IPALAB":{"n":"Industrial Process Automation Lab / Mini Project","fl":"Dr Rakesh Kumar S / Dr Amudhan A M · Mini Project: Dr Siva Shankar G / TA","room":"Automation Lab","note":"Combined block labelled Industrial Process Automation (Automation Lab) / Mini Project; spans Slots 8–10 on Tuesday and Thursday."},"CADLAB":{"n":"Optimization Techniques — CAD Lab (Hall A and B)","fl":"Dr Rameshkumar K / Dr Devarajan K","room":"CAD Lab Hall A and B","note":"Wednesday practical block for Optimization Techniques; spans Slots 4–6."},"ROSLAB":{"n":"Robot Operating System — Robotics Lab (Professional Elective I lab)","fl":"Dr Siva Shankar G / TA","room":"Robotics Lab","note":"Wednesday practical block for Professional Elective I; spans Slots 8–10."}};
+let TT={
+1:[[2,2,'23MEE306'],[3,3,'23ARE311'],[4,4,'23ARE313'],[5,5,'23ARE312'],[8,10,'MLLAB']],
+2:[[2,2,'23ARE312'],[3,3,'23ARE311'],[4,4,'MENT'],[5,5,'PE1'],[7,7,'PE2'],[8,10,'IPALAB']],
+3:[[2,2,'PE2'],[3,3,'23ARE311'],[4,6,'CADLAB'],[8,10,'ROSLAB']],
+4:[[3,3,'PE1'],[4,6,'23LSE311'],[8,10,'IPALAB']],
+5:[[2,2,'23ARE312'],[3,3,'PE2'],[4,4,'23ARE313'],[5,5,'PE1'],[6,6,'23MEE306']]
+};
+const DEFAULT_TT=JSON.parse(JSON.stringify(TT));
+const EV={
+'2026-11-16':[['milestone','Commencement of Even Semester — III Year / Semester VI']],
+'2026-11-20':[['event','Commencement of Even Semester — II Year']],
+'2026-11-21':[['special',"Monday's Timetable"]],
+'2026-12-05':[['special',"Tuesday's Timetable"]],
+'2026-12-07':[['event','Commencement of Even Semester — I Year B.Tech']],
+'2026-12-19':[['special',"Wednesday's Timetable"]],
+'2026-12-25':[['holiday','Christmas']],
+'2027-01-01':[['holiday','New Year']],
+'2027-01-08':[['event','Campus-level Pongal Celebration — Culturals']],
+'2027-01-09':[['special',"Thursday's Timetable"],['event','Campus-level Pongal Celebration — Feast']],
+'2027-01-11':[['holiday','Winter Break']],
+'2027-01-12':[['holiday','Winter Break']],
+'2027-01-13':[['holiday','Winter Break']],
+'2027-01-14':[['holiday','Winter Break']],
+'2027-01-15':[['holiday','Pongal']],
+'2027-01-16':[['holiday','Uzhavar Thirunal']],
+'2027-01-18':[['holiday','Winter Break']],
+'2027-01-19':[['holiday','Winter Break']],
+'2027-01-20':[['holiday','Winter Break']],
+'2027-01-21':[['holiday','Winter Break']],
+'2027-01-22':[['holiday','Winter Break']],
+'2027-01-23':[['holiday','Thaipoosam']],
+'2027-01-25':[['holiday','Winter Break']],
+'2027-01-26':[['holiday','Republic Day']],
+'2027-01-27':[['exam','Mid Term Examinations for all higher semesters commence']],
+'2027-01-30':[['special',"Friday's Timetable"]],
+'2027-02-04':[['event','Anokha']],
+'2027-02-05':[['event','Anokha']],
+'2027-02-06':[['special',"Monday's Timetable"],['event','Anokha']],
+'2027-02-20':[['special',"Tuesday's Timetable"]],
+'2027-03-04':[['event','Amritotsavam']],
+'2027-03-05':[['event','Amritotsavam']],
+'2027-03-06':[['special',"Wednesday's Timetable"],['event','Maha Sivarathri']],
+'2027-03-10':[['holiday','Ramzan']],
+'2027-03-12':[['event','Institution Day']],
+'2027-03-19':[['event','Campus-level Ugadi Celebration — Culturals']],
+'2027-03-20':[['special',"Thursday's Timetable"],['event','Campus-level Ugadi Celebration — Feast']],
+'2027-03-22':[['event','Campus-level Holi Celebration']],
+'2027-03-26':[['holiday','Good Friday']],
+'2027-03-30':[['milestone','Last Instruction Day — IV Year, III Year and V Year Int. M.Sc.']],
+'2027-03-31':[['exam','End Semester Examination Commencement — IV Year, III Year and V Year Int. M.Sc.']]
+};
+const SEM_START='2026-11-16',SEM_END='2027-03-30',DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const NOTES=[
+['Semester VI timetable','The weekly grid is transcribed from VI Sem ARE.pdf, page 1. The table contains 12 slots, Monday–Friday, class room E211, and separate Professional Elective I and II option blocks.'],
+['Professional Elective I','The timetable lists 23ARE342 Robot Operating System (E211) and 23ARE337 Autonomous Vehicles 1 (E209) together in the PE-I slot. They are alternatives, not two simultaneous classes for an individual student.'],
+['Professional Elective II','The timetable lists 23MEE335 Modelling and Simulation of Engineering Systems (E209), 23ARE363 Smart Manufacturing (E211), and 23ARE362 Industry 4.0 (E302) together in the PE-II slot. They are alternatives.'],
+['Syllabus and timetable code differences','The Semester 6 syllabus uses 21MAT306, 21ARE311, 21ARE312, 21ARE313 and 21ARE399. The VI Semester timetable uses 23MEE306, 23ARE311, 23ARE312, 23ARE313 and 23ARE399. Where the subject title matches, both codes are retained in the course record rather than replacing the timetable code.'],
+['Life Skills syllabus entry','The timetable lists 23LSE311 Life Skills for Engineers IV. The syllabus PDF contains 19SSK311 Soft Skills – III. These are kept separately because the documents do not establish that they are the same course.'],
+['Syllabus-only course','19MNG300 Disaster Management appears in the Semester 6 syllabus but not in the VI Sem ARE timetable. It is shown as a syllabus-only course.'],
+['Missing course details','Indian Constitution (23LAW300), Live in Labs II (23LIV490), and several professional electives appear in the timetable without course-specific syllabus units or evaluation details in the uploaded syllabus. Those fields are left blank.'],
+['Academic calendar','The AY 2026–2027 calendar marks 16 November 2026 as commencement of the even semester for III Year and 30 March 2027 as the last instruction day. The Year III column runs from CD 1 to CD 90. Special Saturday timetables and the January winter break are included.'],
+['Exam dates','The academic calendar gives the higher-semester mid-term commencement on 27 January 2027 and end-semester commencement on 31 March 2027. It does not provide individual subject examination dates or Periodical 1 / Periodical 2 dates.']
+];
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s),el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const parse=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)};
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const evs=k=>EV[k]||[];
+const hms=m=>{const h=Math.floor(m/60),x=m%60,p=h>=12?'pm':'am',hh=h%12||12;return P.h24?String(h).padStart(2,'0')+'.'+String(x).padStart(2,'0'):hh+'.'+String(x).padStart(2,'0')+' '+p};
+const slotT=(a,b)=>hms(SL[a-1][0])+' – '+hms(SL[b-1][1]);
+function isHol(k){const d=parse(k),w=d.getDay();if(evs(k).some(e=>e[0]==='holiday'))return true;if(w===0)return true;if(w===6)return!evs(k).some(e=>e[0]==='special');return false}
+function effDay(k){ // returns weekday index 1..5 whose timetable runs on date k, or 0
+  const sp=evs(k).find(e=>e[0]==='special');if(sp){const i=DN.indexOf(sp[1].slice(0,3));return i>=1&&i<=5?i:0}
+  if(isHol(k))return 0;const w=parse(k).getDay();return w>=1&&w<=5?w:0}
+function cd(k){ // class-day number for Year III on date k (0 if not an instruction day)
+  if(!effDay(k)||k<SEM_START||k>SEM_END)return 0;let n=0;const e=parse(k);
+  for(let d=parse(SEM_START);d<=e;d.setDate(d.getDate()+1))if(effDay(iso(d)))n++;return n}
+const TOTAL_CD=(()=>{let n=0;for(let d=parse(SEM_START),e=parse(SEM_END);d<=e;d.setDate(d.getDate()+1))if(effDay(iso(d)))n++;return n})();
+function entries(k){const dd=effDay(k);return dd?TT[dd].map(([a,b,c])=>({a,b,c,s:SL[a-1][0],e:SL[b-1][1]})):[]}
+/* ---------- persistence ---------- */
+let P={theme:'',h24:false},T=[];
+function load(){try{P=Object.assign(P,JSON.parse(localStorage.getItem('s6.prefs')||'{}'));T=JSON.parse(localStorage.getItem('s6.tasks')||'[]');const courses=JSON.parse(localStorage.getItem('s6.courses')||'null');if(courses&&typeof courses==='object')Object.assign(C,courses);const saved=localStorage.getItem('s6.timetable');if(saved){const parsed=JSON.parse(saved);if(parsed&&[1,2,3,4,5].every(d=>Array.isArray(parsed[d])))TT=parsed}}catch(e){}}
+function save(){try{localStorage.setItem('s6.prefs',JSON.stringify(P));localStorage.setItem('s6.tasks',JSON.stringify(T));localStorage.setItem('s6.timetable',JSON.stringify(TT));localStorage.setItem('s6.courses',JSON.stringify(C))}catch(e){}}
+try{['s5.prefs','s5.tasks','s5.timetable','s5.marks'].forEach(k=>localStorage.removeItem(k))}catch(e){}
+load();if(P.theme)document.documentElement.setAttribute('data-theme',P.theme);
+/* ---------- views ---------- */
+const VIEWS=[['dash','Dashboard'],['tt','Timetable'],['cal','Calendar'],['courses','Courses'],['exams','Exams'],['events','Events'],['tasks','Tasks'],['res','Resources'],['data','Data notes']];
+let cur='dash',calM=null,ttDay=null;
+function go(v){cur=v;render();$('#view').focus()}
+function navBar(){const n=$('#nav');n.innerHTML='';VIEWS.forEach(([id,label])=>{const b=el('button',null,label);if(id===cur)b.setAttribute('aria-current','page');b.onclick=()=>go(id);n.appendChild(b)})}
+function card(title,body){const c=el('div','card');if(title)c.appendChild(el('div','k',title));if(body)c.appendChild(body);return c}
+function list(items){const u=el('ul','l');items.forEach(([type,main,side])=>{const li=el('li');const d=el('span','dot t-'+(type||'event'));li.appendChild(d);const m=el('div');m.style.flex='1';m.appendChild(el('div',null,main));if(side)m.appendChild(el('div','mu',side));li.appendChild(m);u.appendChild(li)});return u}
+function emptyNote(t){const p=el('p','mu',t);return p}
+
+function vDash(){
+  const v=$('#view'),now=new Date(),k=iso(now),min=now.getHours()*60+now.getMinutes();
+  v.innerHTML='';v.appendChild(el('h2',null,DN[now.getDay()]+', '+now.getDate()+' '+MN[now.getMonth()]+' '+now.getFullYear()));
+  const dd=effDay(k),day=cd(k);
+  v.appendChild(el('p','sub',dd?(day?'Class day '+day+' of '+TOTAL_CD+(dd!==now.getDay()?' · running '+DN[dd]+"'s timetable":''):'Instruction period has ended for Year III'):'No classes today'));
+  const g=el('div','grid');
+  // status
+  const es=entries(k);let nowE=null,nextE=null;
+  es.forEach(x=>{if(min>=x.s&&min<x.e)nowE=x;else if(min<x.s&&!nextE)nextE=x});
+  const s1=el('div');
+  if(nowE){s1.appendChild(el('div','big',C[nowE.c].n));s1.appendChild(el('div','mu','Slot '+nowE.a+(nowE.b>nowE.a?'–'+nowE.b:'')+' · '+slotT(nowE.a,nowE.b)+' · ends in '+(nowE.e-min)+' min'))}
+  else s1.appendChild(el('div','big','—'));
+  const c1=card('Right now',s1);if(nowE)c1.classList.add('now');g.appendChild(c1);
+  const s2=el('div');
+  if(nextE){s2.appendChild(el('div','big',C[nextE.c].n));const h=Math.floor((nextE.s-min)/60),m2=(nextE.s-min)%60;
+    s2.appendChild(el('div','mu',slotT(nextE.a,nextE.b)+' · in '+(h?h+' h ':'')+m2+' min'))}
+  else{ // next teaching day
+    let d=parse(k);let found=null;for(let i=0;i<40;i++){d.setDate(d.getDate()+1);const kk=iso(d);if(effDay(kk)&&kk<=SEM_END){found=kk;break}}
+    if(found){const e0=entries(found)[0];s2.appendChild(el('div','big',C[e0.c].n));s2.appendChild(el('div','mu',DN[parse(found).getDay()]+' '+parse(found).getDate()+' '+MN[parse(found).getMonth()].slice(0,3)+' · '+slotT(e0.a,e0.b)))}
+    else s2.appendChild(el('div','big','—'))}
+  g.appendChild(card('Next class',s2));
+  // next exam / holiday
+  const up=[];Object.keys(EV).sort().forEach(kk=>{if(kk>=k)evs(kk).forEach(e=>up.push([kk,e[0],e[1]]))});
+  const nx=t=>up.find(x=>x[1]===t);
+  [['exam','Next exam'],['holiday','Next holiday'],['milestone','Next milestone']].forEach(([t,lab])=>{
+    const x=nx(t),b=el('div');
+    if(x){const dt=parse(x[0]),days=Math.round((dt-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+      b.appendChild(el('div','big',x[2]));b.appendChild(el('div','mu',DN[dt.getDay()]+' '+dt.getDate()+' '+MN[dt.getMonth()]+' · '+(days===0?'today':days===1?'tomorrow':'in '+days+' days')))}
+    else b.appendChild(el('div','big','—'));
+    g.appendChild(card(lab,b))});
+  // progress
+  const pb=el('div');const pct=day?Math.round(day/TOTAL_CD*100):(k>SEM_END?100:0);
+  pb.appendChild(el('div','big',pct+'%'));pb.appendChild(el('div','mu','16 Nov 2026 → 30 Mar 2027 (last instruction day)'));
+  const bar=el('div','bar');const ib=el('i');ib.style.width=pct+'%';bar.appendChild(ib);pb.appendChild(bar);
+  g.appendChild(card('Semester progress',pb));
+  v.appendChild(g);
+  // today schedule
+  const sec=el('div','sec');sec.appendChild(el('h3',null,"Today's classes"));
+  if(es.length){const u=el('ul','l');es.forEach(x=>{const li=el('li');const t=el('span','tag',slotT(x.a,x.b));const m=el('div');m.style.flex='1';
+    m.appendChild(el('div',null,C[x.c].n));m.appendChild(el('div','mu',(C[x.c].f||C[x.c].fl||'')+' · Slot '+x.a+(x.b>x.a?'–'+x.b:'')));
+    if(min>=x.s&&min<x.e)li.style.fontWeight='600';li.appendChild(t);li.appendChild(m);u.appendChild(li)});sec.appendChild(u)}
+  else sec.appendChild(emptyNote(evs(k).length?evs(k).map(e=>e[1]).join(' · '):'Nothing scheduled.'));
+  v.appendChild(sec);
+  // open tasks
+  const s3=el('div','sec');s3.appendChild(el('h3',null,'Open tasks'));
+  const open=T.filter(t=>!t.done).sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1).slice(0,5);
+  if(open.length)s3.appendChild(list(open.map(t=>['event',t.title,(t.due?t.due:'no date')+(t.course?' · '+(C[t.course]?C[t.course].n:t.course):'')+' · '+t.pri])));
+  else s3.appendChild(emptyNote('No open tasks. Press N to add one.'));
+  v.appendChild(s3);
+}
+function vTT(){
+  const v=$('#view'),today=new Date(),k=iso(today);v.innerHTML='';
+  v.appendChild(el('h2',null,'Timetable'));v.appendChild(el('p','sub','Even Semester 2026–2027 · B.Tech ARE · Year III · Semester VI · Room E211 · Class advisors: Mr. M. Pushparajan (9944685515), Dr. S. Rakesh Kumar (8122280350)'));
+  if(ttDay===null)ttDay=effDay(k)||1;
+  const ch=el('div','chips');
+  [1,2,3,4,5].forEach(d=>{const b=el('button','chip',DN[d]);b.setAttribute('aria-pressed',d===ttDay);b.onclick=()=>{ttDay=d;render()};ch.appendChild(b)});
+  const tb=el('button','chip','Today');tb.onclick=()=>{ttDay=effDay(k)||1;render()};ch.appendChild(tb);
+  v.appendChild(ch);
+  const dd=ttDay,u=el('ul','l');
+  TT[dd].forEach(([a,b,c])=>{const li=el('li');li.appendChild(el('span','tag',slotT(a,b)));const m=el('div');m.style.flex='1';
+    m.appendChild(el('div',null,C[c].n));m.appendChild(el('div','mu',[c.length>5?c:'',C[c].f||'',C[c].fl?'Lab: '+C[c].fl:''].filter(Boolean).join(' · ')));
+    const isNow=effDay(k)===dd&&(()=>{const mn=today.getHours()*60+today.getMinutes();return mn>=SL[a-1][0]&&mn<SL[b-1][1]})();
+    if(isNow)li.style.fontWeight='600';li.appendChild(m);u.appendChild(li)});
+  v.appendChild(card(DN[dd]+' · '+TT[dd].length+' blocks',u));
+  // week grid
+  const w=el('div','sec wk');w.appendChild(el('h3',null,'Full week'));
+  const sc=el('div','scroll'),t=el('table');let h='<tr><th>Day</th>';SL.forEach((s,i)=>h+='<th>Slot '+(i+1)+'<br>'+hms(s[0])+'–'+hms(s[1])+'</th>');h+='</tr>';
+  for(let d=1;d<=5;d++){h+='<tr><td class="f">'+DN[d]+'</td>';let i=1;const map={};TT[d].forEach(([a,b,c])=>map[a]=[b,c]);
+    while(i<=12){if(map[i]){const[b,c]=map[i];h+='<td colspan="'+(b-i+1)+'">'+esc(C[c].n)+'</td>';i=b+1}else{h+='<td class="free">–</td>';i++}}h+='</tr>'}
+  t.innerHTML=h;sc.appendChild(t);w.appendChild(sc);
+  const ex=el('p','mu');ex.style.marginTop='8px';ex.textContent='Saturdays marked in the academic calendar run a weekday timetable instead — see the Calendar view. Blank slots (Slot 1, Slot 7) are free in the source timetable.';
+  w.appendChild(ex);v.appendChild(w);
+}
+
+function vCal(){
+ const v=$('#view'),today=new Date();v.innerHTML='';
+ if(!calM)calM=new Date(today.getFullYear(),today.getMonth(),1);
+ v.appendChild(el('h2',null,'Calendar'));
+ v.appendChild(el('p','sub','Semester VI · Year III · 16 November 2026 to 30 March 2027. Select any date to see its full class list, faculty, room and events.'));
+ const head=el('div','chips');
+ const pv=el('button','chip','←');pv.onclick=()=>{calM.setMonth(calM.getMonth()-1);render()};
+ const nx=el('button','chip','→');nx.onclick=()=>{calM.setMonth(calM.getMonth()+1);render()};
+ const lbl=el('span','chip',MN[calM.getMonth()]+' '+calM.getFullYear());lbl.style.fontWeight='600';
+ const td=el('button','chip','Today');td.onclick=()=>{calM=new Date(today.getFullYear(),today.getMonth(),1);render()};
+ head.append(pv,lbl,nx,td);v.appendChild(head);
+ const leg=el('p','sub');leg.innerHTML='<span class="t-holiday">● Holiday</span> &nbsp; <span class="t-exam">● Exam</span> &nbsp; <span class="t-event">● Event</span> &nbsp; <span class="t-special">● Special timetable</span> &nbsp; <span class="t-milestone">● Class day</span>';
+ v.appendChild(leg);
+ const g=el('div','cal');DN.forEach(d=>g.appendChild(el('div','hdr',d)));
+ const first=new Date(calM.getFullYear(),calM.getMonth(),1),start=new Date(first);start.setDate(1-first.getDay());
+ for(let i=0;i<42;i++){
+  const d=new Date(start);d.setDate(start.getDate()+i);const kk=iso(d),b=el('button','cell');
+  if(d.getMonth()!==calM.getMonth())b.classList.add('off');
+  if(kk===iso(today))b.classList.add('today');if(isHol(kk))b.classList.add('hol');
+  b.appendChild(el('div','d',String(d.getDate())));
+  const events=evs(kk);
+  if(events.length)b.appendChild(el('div','m t-'+events[0][0],events[0][1].slice(0,26)));
+  const daily=entries(kk);
+  if(daily.length){
+   daily.slice(0,2).forEach(x=>b.appendChild(el('div','m t-milestone',C[x.c].n)));
+   if(daily.length>2)b.appendChild(el('div','m mu','+'+(daily.length-2)+' more classes'));
+  }else if(effDay(kk)&&cd(kk))b.appendChild(el('div','m mu','CD '+cd(kk)));
+  b.onclick=()=>dayPanel(kk);g.appendChild(b)
+ }
+ v.appendChild(g);
+ const ag=el('div','sec');ag.appendChild(el('h3',null,'Agenda — '+MN[calM.getMonth()]));
+ const rows=Object.keys(EV).filter(kk=>parse(kk).getMonth()===calM.getMonth()&&parse(kk).getFullYear()===calM.getFullYear()).sort();
+ if(rows.length){const items=[];rows.forEach(kk=>evs(kk).forEach(e=>items.push([e[0],e[1],fmtD(kk)])));ag.appendChild(list(items))}
+ else ag.appendChild(emptyNote('No special calendar events recorded for this month.'));
+ v.appendChild(ag);
+}
+
+function vCourses(){
+  const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Courses'));
+  v.appendChild(el('p','sub','Semester 6 · content preserved from the uploaded syllabus document; codes and faculty from the timetable.'));
+  Object.keys(C).filter(c=>c.length>5).forEach(code=>{const c=C[code],d=el('details');
+    const s=el('summary');s.textContent=code+' — '+c.n+(c.lt?'  ·  L-T-P-C '+c.lt:'');d.appendChild(s);
+    const b=el('div');b.style.paddingTop='8px';
+    const meta=[];if(c.f)meta.push('Theory: '+c.f);if(c.fl)meta.push('Lab: '+c.fl);if(c.sy)meta.push('Syllabus document code: '+c.sy);
+    b.appendChild(el('p','mu',meta.join(' · ')));
+    const slots=[];for(let dd=1;dd<=5;dd++)TT[dd].forEach(([a,bb,cc])=>{if(cc===code)slots.push(DN[dd]+' '+slotT(a,bb))});
+    if(slots.length)b.appendChild(el('p','mu','Timetable: '+slots.join(' · ')));
+    if(c.note)b.appendChild(el('p','mu','Note: '+c.note));
+    if(c.co){b.appendChild(el('h3','sec','Course outcomes'));b.appendChild(list(c.co.map(x=>['milestone',x])))}
+    if(c.u){b.appendChild(el('h3','sec','Syllabus'));b.appendChild(list(c.u.map(x=>['event',x])))}
+    if(c.lab){b.appendChild(el('h3','sec','Lab exercises'));b.appendChild(list(c.lab.map((x,i)=>['special',(i+1)+'. '+x])))}
+    if(c.b){b.appendChild(el('h3','sec','Books'));b.appendChild(list(c.b.map(x=>['event',x])))}
+    if(c.e){b.appendChild(el('h3','sec','Evaluation pattern'));b.appendChild(list(c.e.map(x=>['exam',x[0],x[1]+' marks'])))}
+    d.appendChild(b);v.appendChild(d)});
+  const f=el('div','sec');f.appendChild(el('h3',null,'Faculty'));
+  const seen={};const rows=[];Object.keys(C).forEach(code=>{const c=C[code];[c.f,c.fl].filter(Boolean).forEach(x=>{const key=code+x;if(!seen[key]){seen[key]=1;rows.push(['event',x,code+' — '+c.n])}})});
+  f.appendChild(list(rows));v.appendChild(f);
+}
+function vExams(){
+  const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Exams and assessment'));
+  v.appendChild(el('p','sub','Only dates that appear in the academic calendar for Year III are shown. No dates are inferred.'));
+  const today=iso(new Date());
+  const rows=[];Object.keys(EV).sort().forEach(k=>evs(k).forEach(e=>{if(e[0]==='exam'||e[0]==='milestone'){const d=parse(k),days=Math.round((d-parse(today))/864e5);
+    rows.push([e[0],e[1],DN[d.getDay()]+' '+d.getDate()+' '+MN[d.getMonth()]+' '+d.getFullYear()+(days>0?' · in '+days+' days':days===0?' · today':' · past')])}}));
+  v.appendChild(card('Dated in the calendar',list(rows)));
+  const s=el('div','sec');s.appendChild(el('h3',null,'Evaluation patterns'));
+  Object.keys(C).filter(c=>C[c].e).forEach(code=>{const d=el('details'),su=el('summary');su.textContent=code+' — '+C[code].n;d.appendChild(su);
+    d.appendChild(list(C[code].e.map(x=>['exam',x[0],x[1]+' marks'])));s.appendChild(d)});
+  v.appendChild(s);
+  const n=el('p','mu');n.style.marginTop='12px';n.textContent='The calendar gives one mid-term date for higher semesters (17 Aug 2026) and the end-semester commencement (26 Oct 2026). Individual Periodical 1 / Periodical 2 dates and the end-semester timetable are not in the uploaded sources, so they are left blank rather than guessed.';
+  v.appendChild(n);
+}
+function vEvents(){
+  const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Holidays and events'));
+  v.appendChild(el('p','sub','Descriptions kept as written in the academic calendar AY 2026–2027.'));
+  const groups={holiday:'Holidays',event:'Campus events',special:'Special timetable days',milestone:'Academic milestones'};
+  Object.keys(groups).forEach(t=>{const rows=[];Object.keys(EV).sort().forEach(k=>evs(k).forEach(e=>{if(e[0]===t){const d=parse(k);rows.push([t,e[1],DN[d.getDay()]+' '+d.getDate()+' '+MN[d.getMonth()]+' '+d.getFullYear()])}}));
+    if(rows.length){const s=el('div','sec');s.appendChild(el('h3',null,groups[t]));s.appendChild(card(null,list(rows)));v.appendChild(s)}});
+  const n=el('p','mu');n.style.marginTop='12px';n.textContent='Sundays, and Saturdays without a special timetable, are non-instruction days across the whole calendar and are not listed individually here.';
+  v.appendChild(n);
+}
+function vTasks(){
+  const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Tasks and reminders'));
+  v.appendChild(el('p','sub','Your own entries, stored in this browser only. They never modify the official academic data.'));
+  const f=el('div','card');
+  const r1=el('div','row');
+  const ti=el('input');ti.id='tTitle';ti.placeholder='Task title';
+  const du=el('input');du.type='date';du.id='tDue';
+  r1.append(ti,du);
+  const r2=el('div','row');
+  const co=el('select');co.id='tCourse';co.innerHTML='<option value="">No course</option>'+Object.keys(C).filter(c=>c.length>5).map(c=>'<option value="'+c+'">'+esc(c+' — '+C[c].n)+'</option>').join('');
+  const pr=el('select');pr.id='tPri';pr.innerHTML='<option>Normal</option><option>High</option><option>Low</option>';
+  const add=el('button','btn','Add task');
+  add.onclick=()=>{const t=ti.value.trim();if(!t)return;T.push({id:Date.now(),title:t,due:du.value||'',course:co.value,pri:pr.value,done:false});save();render()};
+  r2.append(co,pr,add);f.append(r1,r2);v.appendChild(f);
+  const s=el('div','sec');s.appendChild(el('h3',null,'Open ('+T.filter(t=>!t.done).length+')'));
+  const u=el('ul','l');
+  T.filter(t=>!t.done).sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1).forEach(t=>u.appendChild(taskRow(t)));
+  s.appendChild(T.some(t=>!t.done)?u:emptyNote('Nothing open.'));v.appendChild(s);
+  const dn=T.filter(t=>t.done);
+  if(dn.length){const s2=el('div','sec');s2.appendChild(el('h3',null,'Completed ('+dn.length+')'));const u2=el('ul','l');dn.forEach(t=>u2.appendChild(taskRow(t)));s2.appendChild(u2);v.appendChild(s2)}
+}
+function taskRow(t){
+  const li=el('li');const cb=el('input');cb.type='checkbox';cb.checked=t.done;cb.style.width='18px';cb.style.minHeight='18px';cb.style.marginTop='4px';
+  cb.onchange=()=>{t.done=cb.checked;save();render()};
+  const m=el('div');m.style.flex='1';const h=el('div',t.done?'done':null,t.title);
+  m.appendChild(h);m.appendChild(el('div','mu',[t.due||'no date',t.course?(C[t.course]?C[t.course].n:t.course):'',t.pri].filter(Boolean).join(' · ')));
+  const del=el('button','ib','Delete');del.onclick=()=>{T=T.filter(x=>x.id!==t.id);save();render()};
+  li.append(cb,m,del);return li;
+}
+function vRes(){
+  const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Resources'));
+  v.appendChild(el('p','sub','Uploaded source material and what was taken from each.'));
+  v.appendChild(card(null,list([
+    ['event','Semester_V_Class_Time_Table_edited.pdf','PDF · timetable · Weekly grid, 12 slots, course codes, faculty (theory and lab), room E211, class advisors'],
+    ['event','Academic-Calendar-AY-2026-2027.pdf','PDF · calendar · Working days, class-day numbering for Year III, holidays, campus events, special timetable Saturdays, mid-term and end-semester dates'],
+    ['event','Semester-5_Syllabus_B_Tech_Automation_Robotics.pdf','PDF · curriculum · Objectives, outcomes, units, lab exercises, books and evaluation patterns for the Semester 6 courses'],
+    ['holiday','B_Tech__2024_ARE.xlsx','Spreadsheet · student roster · Not loaded — contains other students\u2019 names and personal email addresses, and no Semester 6 academic data']])));
+  const s=el('div','sec');s.appendChild(el('h3',null,'Your data'));
+  const ta=el('textarea');ta.id='io';ta.value=JSON.stringify({prefs:P,tasks:T},null,1);
+  const r=el('div','row');const imp=el('button','btn','Import from box');
+  imp.onclick=()=>{try{const o=JSON.parse(ta.value);if(Array.isArray(o.tasks))T=o.tasks;if(o.prefs)P=Object.assign(P,o.prefs);save();alert('Imported.');render()}catch(e){alert('That is not valid JSON.')}};
+  const rs=el('button','btn g','Reset personal data');
+  rs.onclick=()=>{if(confirm('Delete your tasks and preferences? Official academic data is unaffected.')){T=[];P={theme:'',h24:false};save();render()}};
+  const th=el('button','btn g','Toggle 12/24-hour');th.onclick=()=>{P.h24=!P.h24;save();render()};
+  r.append(imp,rs,th);s.append(ta,r);
+  s.appendChild(el('p','mu','Copy the box above to back up your tasks, or paste a backup in and press Import. Official calendar, timetable and syllabus data is built into the app and is never overwritten by an import.'));
+  v.appendChild(s);
+}
+function vData(){
+  const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Data notes and conflicts'));
+  v.appendChild(el('p','sub','Where the uploaded sources disagree or fall short, both readings are kept and shown here instead of one being silently chosen.'));
+  NOTES.forEach(([t,b])=>{const c=el('div','card');c.style.marginBottom='10px';c.appendChild(el('div','k',t));c.appendChild(el('p','mu',b));v.appendChild(c)});
+  v.appendChild(card('Class-day numbering check',el('p','mu','Class days are recomputed from the rule "weekdays that are not holidays, plus Saturdays carrying a weekday timetable". For Year III this reproduces the calendar exactly: CD 6 on 30 Jun, CD 31 on 31 Jul, CD 52 on 31 Aug, CD 67 on 21 Sep, CD 74 on 30 Sep and CD 90 on 23 Oct 2026.')));
+}
+const RENDER={dash:vDash,tt:vTT,cal:vCal,courses:vCourses,exams:vExams,events:vEvents,tasks:vTasks,res:vRes,data:vData};
+function render(){navBar();RENDER[cur]()}
+/* ---------- search ---------- */
+function index(){
+  const out=[];
+  Object.keys(C).forEach(code=>{const c=C[code];out.push({t:c.n,s:(code.length>5?code+' · ':'')+'Course'+(c.f?' · '+c.f:'')+(c.lt?' · L-T-P-C '+c.lt:''),v:'courses'});
+    [c.f,c.fl].filter(Boolean).forEach(f=>out.push({t:f,s:'Faculty · '+c.n,v:'courses'}))});
+  for(let d=1;d<=5;d++)TT[d].forEach(([a,b,c])=>out.push({t:C[c].n,s:'Class · '+DN[d]+' '+slotT(a,b),v:'tt'}));
+  Object.keys(EV).forEach(k=>evs(k).forEach(e=>{const dt=parse(k);out.push({t:e[1],s:e[0][0].toUpperCase()+e[0].slice(1)+' · '+dt.getDate()+' '+MN[dt.getMonth()]+' '+dt.getFullYear(),v:e[0]==='exam'?'exams':'events'})}));
+  Object.keys(C).forEach(code=>{const c=C[code];(c.u||[]).concat(c.lab||[]).forEach(x=>out.push({t:x.slice(0,90),s:'Syllabus · '+code,v:'courses'}))});
+  T.forEach(t=>out.push({t:t.title,s:'Task · '+(t.due||'no date'),v:'tasks'}));
+  return out}
+let IDX=null;
+function doSearch(){
+  IDX=IDX||index();const q=$('#q').value.trim().toLowerCase(),r=$('#qr');r.innerHTML='';
+  if(!q){r.appendChild(emptyNote('Type to search courses, faculty, classes, syllabus topics, events and tasks.'));return}
+  const hits=IDX.filter(x=>(x.t+' '+x.s).toLowerCase().includes(q)).slice(0,25);
+  if(!hits.length){r.appendChild(emptyNote('Nothing matched "'+q+'".'));return}
+  hits.forEach(h=>{const li=el('li');const b=el('button','ib');b.style.textAlign='left';b.style.width='100%';
+    b.innerHTML='<div style="color:var(--tx)">'+esc(h.t).replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>')+'</div><div class="mu">'+esc(h.s)+'</div>';
+    b.onclick=()=>{closeAll();go(h.v)};li.appendChild(b);r.appendChild(li)});
+}
+function closeAll(){['#ovSearch','#ovDay','#ovHelp'].forEach(s=>$(s).hidden=true)}
+$('#btnSearch').onclick=()=>{IDX=null;$('#ovSearch').hidden=false;$('#q').value='';doSearch();$('#q').focus()};
+$('#btnHelp').onclick=()=>{$('#ovHelp').hidden=false};
+$('#btnTheme').onclick=()=>{P.theme=P.theme==='dark'?'light':P.theme==='light'?'':'dark';
+  if(P.theme)document.documentElement.setAttribute('data-theme',P.theme);else document.documentElement.removeAttribute('data-theme');save()};
+$('#q').addEventListener('input',doSearch);
+document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeAll()}));
+document.addEventListener('keydown',e=>{
+  const tag=(e.target.tagName||'').toLowerCase(),typing=tag==='input'||tag==='textarea'||tag==='select';
+  if(e.key==='Escape'){closeAll();return}
+  if(typing)return;
+  if(e.key==='/'){e.preventDefault();$('#btnSearch').click();return}
+  if(e.key==='?'){$('#ovHelp').hidden=false;return}
+  if(e.key==='T'&&e.shiftKey){calM=null;ttDay=null;go('dash');return}
+  const m={d:'dash',t:'tt',c:'cal',k:'courses',e:'exams',r:'res'}[e.key.toLowerCase()];
+  if(m&&!e.metaKey&&!e.ctrlKey){go(m);return}
+  if(e.key.toLowerCase()==='n'){go('tasks');setTimeout(()=>{const i=$('#tTitle');if(i)i.focus()},30);return}
+  if(cur==='cal'&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){calM.setMonth(calM.getMonth()+(e.key==='ArrowRight'?1:-1));render()}
+});
+render();setInterval(()=>{if(cur==='dash')vDash()},60000);
+/* ================= v3 layer: live data, themes, graph-style detail panels ================= */
+const PHONE={'Mr. M. Pushparajan':'9944685515','Dr. S. Rakesh Kumar':'8122280350'};
+const LAB={MLLAB:['23ARE311'],IPALAB:['23ARE313','23ARE399'],CADLAB:['23MEE306'],ROSLAB:['23ARE342']};
+let CODES=Object.keys(C).filter(c=>/^\d\d[A-Z]{3}\d/.test(c));
+const now=()=>new Date(),tISO=()=>iso(new Date()),mins=()=>{const d=new Date();return d.getHours()*60+d.getMinutes()};
+const fmtD=k=>{const d=parse(k);return DN[d.getDay()]+' '+d.getDate()+' '+MN[d.getMonth()].slice(0,3)+' '+d.getFullYear()};
+const dleft=k=>Math.round((parse(k)-parse(tISO()))/864e5);
+const relD=n=>n===0?'today':n===1?'tomorrow':n<0?Math.abs(n)+' days ago':'in '+n+' days';
+const nmz=s=>String(s||'').split('/').map(x=>x.trim()).filter(x=>x&&x!=='TA');
+const cred=c=>c.lt?+c.lt.split('-')[3]||0:0;
+const dur=m=>m>=60?Math.floor(m/60)+' h '+(m%60?(m%60)+' min':'').trim():m+' min';
+function slotsOf(code){const o=[];for(let d=1;d<=5;d++)TT[d].forEach(([a,b,c])=>{if(c===code)o.push({d:d,a:a,b:b,raw:c})});return o}
+function allSlots(code){let o=slotsOf(code);Object.keys(LAB).forEach(l=>{if(LAB[l].indexOf(code)>=0)o=o.concat(slotsOf(l))});
+  const seen={};return o.filter(x=>{const k=x.d+'-'+x.a;if(seen[k])return false;seen[k]=1;return true}).sort((p,q)=>p.d-q.d||p.a-q.a)}
+function hoursWk(code){return allSlots(code).reduce((n,s)=>n+(SL[s.b-1][1]-SL[s.a-1][0]),0)}
+function nextOf(code){const d=parse(tISO()),tk=tISO(),mn=mins();
+  for(let i=0;i<140;i++){const k=iso(d);if(k>SEM_END)break;const dd=effDay(k);
+    if(dd){const h=TT[dd].find(function(x){return x[2]===code||(LAB[x[2]]||[]).indexOf(code)>=0});
+      if(h&&!(k===tk&&SL[h[1]-1][1]<=mn))return{k:k,a:h[0],b:h[1],raw:h[2]}}d.setDate(d.getDate()+1)}return null}
+function facMap(){const m={},add=(n,code,r)=>{if(!m[n])m[n]={n:n,c:{}};m[n].c[code]=m[n].c[code]&&m[n].c[code]!==r?'Theory + Lab':r};
+  Object.keys(C).forEach(code=>{nmz(C[code].f).forEach(n=>add(n,code,'Theory'));nmz(C[code].fl).forEach(n=>add(n,code,'Lab'))});return m}
+function pan(b){const p=$('#dayPan');p.innerHTML='';b(p);$('#ovDay').hidden=false}
+function lnk(txt,fn,cls){const b=el('button','ib '+(cls||''),txt);b.style.padding='3px 9px';b.style.minHeight='0';b.onclick=fn;return b}
+function wbar(e){const w=el('div','wbar');(e||[]).forEach((x,i)=>{const s=el('i','w'+(i%5));s.style.width=x[1]+'%';s.title=x[0]+' — '+x[1];w.appendChild(s)});return w}
+function wlegend(e){const l=el('div','lg');(e||[]).forEach((x,i)=>{const s=el('span');const c=el('i','sw w'+(i%5));s.appendChild(c);s.appendChild(el('em',null,x[0]+' '+x[1]));s.querySelector('em').style.fontStyle='normal';l.appendChild(s)});return l}
+function slotLine(s){return DN[s.d]+' · Slot '+(s.a===s.b?s.a:s.a+'–'+s.b)+' · '+slotT(s.a,s.b)}
+/* ---------- detail panels (backlink style) ---------- */
+function courseDetail(code){pan(p=>{const c=C[code];
+  p.appendChild(el('h3',null,(CODES.indexOf(code)>=0?code+' — ':'')+c.n));
+  const meta=[];if(c.lt)meta.push('L-T-P-C '+c.lt);if(c.sy)meta.push('Syllabus code '+c.sy);meta.push('Room E211');
+  p.appendChild(el('p','mu',meta.join(' · ')));
+  const dl=el('dl','kv');
+  const row=(k,v)=>{if(!v)return;dl.appendChild(el('dt',null,k));dl.appendChild(el('dd',null,v))};
+  row('Theory',c.f);row('Lab',c.fl);
+  const sl=allSlots(code);row('Weekly load',sl.length?sl.length+' blocks · '+dur(Math.round(hoursWk(code))):'No slot in the weekly grid');
+  if(cred(c))row('Credits',cred(c));p.appendChild(dl);
+  const ph=[].concat(nmz(c.f),nmz(c.fl)).filter(n=>PHONE[n]);
+  if(ph.length)p.appendChild(el('p','mu','Phone: '+ph.map(n=>n+' — '+PHONE[n]).join(' · ')+' (class advisor number from the timetable)'));
+  if(sl.length){const s=el('div','sec');s.appendChild(el('h3',null,'Weekly slots'));
+    s.appendChild(list(sl.map(x=>['event',slotLine(x),x.raw!==code?C[x.raw].n:'Theory'])));p.appendChild(s)}
+  const nx=nextOf(code);if(nx)p.appendChild(el('p','mu','Next session: '+fmtD(nx.k)+' ('+relD(dleft(nx.k))+') · '+slotT(nx.a,nx.b)));
+  if(c.e){const s=el('div','sec');s.appendChild(el('h3',null,'Assessment weighting'));s.appendChild(wbar(c.e));s.appendChild(wlegend(c.e));p.appendChild(s)}
+  if(c.co){const s=el('div','sec');s.appendChild(el('h3',null,'Course outcomes'));s.appendChild(list(c.co.map(x=>['milestone',x,''])));p.appendChild(s)}
+  if(c.b){const s=el('div','sec');s.appendChild(el('h3',null,'Books'));s.appendChild(list(c.b.map(x=>['event',x,''])));p.appendChild(s)}
+  const mine=T.filter(t=>t.course===code&&!t.done);
+  const s2=el('div','sec');s2.appendChild(el('h3',null,'Your open tasks ('+mine.length+')'));
+  s2.appendChild(mine.length?list(mine.map(t=>['milestone',t.title,t.due?fmtD(t.due):'no date'])):emptyNote('None yet. Press N to add one.'));p.appendChild(s2);
+  if(c.note)p.appendChild(el('p','mu','Note: '+c.note));
+  const act=el('div','row');act.style.marginTop='14px';
+  act.appendChild(lnk('Open Timetable',()=>{closeAll();ttDay=sl.length?sl[0].d:1;go('tt')}));
+  act.appendChild(lnk('Open Marks',()=>{closeAll();go('marks')}));
+  nmz(c.f).concat(nmz(c.fl)).slice(0,3).forEach(n=>act.appendChild(lnk(n,()=>facDetail(n))));p.appendChild(act)})}
+function facDetail(n){pan(p=>{const m=facMap()[n];p.appendChild(el('h3',null,n));
+  if(!m){p.appendChild(el('p','mu','Not listed in the uploaded timetable.'));return}
+  p.appendChild(el('p','mu',PHONE[n]?'Class advisor · '+PHONE[n]:'No phone number for this faculty member in the uploaded sources.'));
+  const rows=[];Object.keys(m.c).forEach(code=>{allSlots(code).forEach(s=>rows.push(['event',slotLine(s),(CODES.indexOf(code)>=0?code+' — ':'')+C[code].n+' · '+m.c[code]]))});
+  const s1=el('div','sec');s1.appendChild(el('h3',null,'Courses ('+Object.keys(m.c).length+')'));
+  const u=el('ul','l');Object.keys(m.c).forEach(code=>{const li=el('li');li.appendChild(el('span','dot t-milestone'));
+    const b=lnk((CODES.indexOf(code)>=0?code+' — ':'')+C[code].n+'  ·  '+m.c[code],()=>courseDetail(code));b.style.flex='1';li.appendChild(b);u.appendChild(li)});
+  s1.appendChild(u);p.appendChild(s1);
+  const s2=el('div','sec');s2.appendChild(el('h3',null,'Weekly footprint'));
+  s2.appendChild(rows.length?list(rows):emptyNote('No slot in the weekly grid.'));p.appendChild(s2)})}
+/* ---------- dashboard: live ---------- */
+vDash=function(){const v=$('#view'),k=tISO(),mn=mins(),dd=effDay(k),day=cd(k),es=entries(k);v.innerHTML='';
+  v.appendChild(el('h2',null,'Today · '+fmtD(k)));
+  v.appendChild(el('p','sub',dd?('Working day'+(day?' · Class day '+day+' of '+TOTAL_CD:'')+(dd!==parse(k).getDay()?' · running '+DN[dd]+"'s timetable":'')+' · Room E211'):'Not an instruction day'));
+  const g=el('div','grid');
+  let nowE=null,nextE=null;es.forEach(x=>{if(mn>=x.s&&mn<x.e)nowE=x;else if(mn<x.s&&!nextE)nextE=x});
+  const b1=el('div');
+  if(nowE){b1.appendChild(el('div','big',C[nowE.c].n));b1.appendChild(el('div','mu',slotT(nowE.a,nowE.b)+' · '+(C[nowE.c].f||C[nowE.c].fl||'')));
+    const bar=el('div','bar'),i=el('i');i.style.width=Math.round((mn-nowE.s)/(nowE.e-nowE.s)*100)+'%';bar.appendChild(i);b1.appendChild(bar);
+    b1.appendChild(el('div','mu',dur(nowE.e-mn)+' left'))}
+  else{b1.appendChild(el('div','big','Free'));b1.appendChild(el('div','mu',dd?'No class in this slot':'No classes scheduled'))}
+  const c1=card('Right now',b1);if(nowE){c1.classList.add('now');c1.style.cursor='pointer';c1.onclick=()=>courseDetail(nowE.c)}g.appendChild(c1);
+  const b2=el('div');
+  if(nextE){b2.appendChild(el('div','big',C[nextE.c].n));b2.appendChild(el('div','mu',slotT(nextE.a,nextE.b)+' · starts in '+dur(nextE.s-mn)));
+    b2.appendChild(el('div','mu',C[nextE.c].f||C[nextE.c].fl||''))}
+  else{let d=parse(k),f=null;for(let i=0;i<40;i++){d.setDate(d.getDate()+1);const kk=iso(d);if(effDay(kk)&&kk<=SEM_END&&entries(kk).length){f=kk;break}}
+    if(f){const e2=entries(f)[0];b2.appendChild(el('div','big',C[e2.c].n));b2.appendChild(el('div','mu',fmtD(f)+' · '+slotT(e2.a,e2.b)))}
+    else b2.appendChild(el('div','big','—'))}
+  const c2=card('Next class',b2);if(nextE){c2.style.cursor='pointer';c2.onclick=()=>courseDetail(nextE.c)}g.appendChild(c2);
+  const up=[];Object.keys(EV).sort().forEach(kk=>{if(kk>=k)evs(kk).forEach(e=>up.push([kk,e[0],e[1]]))});
+  [['exam','Next exam'],['holiday','Next holiday'],['event','Next campus event']].forEach(([t,lab])=>{
+    const x=up.find(y=>y[1]===t),b=el('div');
+    if(x){b.appendChild(el('div','big t-'+t,relD(dleft(x[0]))));b.appendChild(el('div','mu',x[2]));b.appendChild(el('div','mu',fmtD(x[0])))}
+    else b.appendChild(el('div','big','—'));g.appendChild(card(lab,b))});
+  const pb=el('div'),pct=day?Math.round(day/TOTAL_CD*100):(k>SEM_END?100:0);
+  pb.appendChild(el('div','big',pct+'%'));pb.appendChild(el('div','mu',(day||0)+' of '+TOTAL_CD+' class days · last instruction day '+fmtD(SEM_END)));
+  const bar=el('div','bar'),ib=el('i');ib.style.width=pct+'%';bar.appendChild(ib);pb.appendChild(bar);g.appendChild(card('Semester progress',pb));
+  const tod=T.filter(t=>!t.done&&t.due===k).length,od=T.filter(t=>!t.done&&t.due&&t.due<k).length;
+  const tb=el('div');tb.appendChild(el('div','big',T.filter(t=>!t.done).length));
+  tb.appendChild(el('div','mu',tod+' due today · '+od+' overdue'));const c3=card('Open tasks',tb);c3.style.cursor='pointer';c3.onclick=()=>go('tasks');g.appendChild(c3);
+  v.appendChild(g);
+  const sec=el('div','sec');sec.appendChild(el('h3',null,"Today's classes ("+es.length+')'));
+  if(es.length){const u=el('ul','l');es.forEach(x=>{const li=el('li'),past=mn>=x.e;
+    li.appendChild(el('span','dot '+(mn>=x.s&&mn<x.e?'t-exam':past?'t-special':'t-milestone')));
+    const b=lnk(C[x.c].n,()=>courseDetail(x.c));b.style.flex='1';b.style.opacity=past?.55:1;
+    b.innerHTML='<div style="font-weight:600">'+esc(C[x.c].n)+'</div><div class="mu">'+esc(slotT(x.a,x.b)+' · Slot '+(x.a===x.b?x.a:x.a+'–'+x.b)+' · '+(C[x.c].f||C[x.c].fl||'')+' · E211'+(past?' · done':mn<x.s?' · in '+dur(x.s-mn):' · now'))+'</div>';
+    li.appendChild(b);u.appendChild(li)});sec.appendChild(u)}
+  else sec.appendChild(emptyNote(dd?'No classes in the grid for this day.':'Holiday or non-instruction day — nothing scheduled.'));
+  v.appendChild(sec);
+  const te=evs(k);if(te.length){const s=el('div','sec');s.appendChild(el('h3',null,"Today's events"));s.appendChild(list(te.map(e=>[e[0],e[1],e[0]])));v.appendChild(s)}
+  const s4=el('div','sec');s4.appendChild(el('h3',null,'Next 30 days'));
+  const rows=[];Object.keys(EV).sort().forEach(kk=>{const n=dleft(kk);if(n>=0&&n<=30)evs(kk).forEach(e=>rows.push([e[0],e[1],fmtD(kk)+' · '+relD(n)]))});
+  T.filter(t=>!t.done&&t.due&&dleft(t.due)>=0&&dleft(t.due)<=30).forEach(t=>rows.push(['milestone','Task: '+t.title,fmtD(t.due)+' · '+relD(dleft(t.due))]));
+  s4.appendChild(rows.length?list(rows.sort((a,b)=>a[2]<b[2]?-1:1)):emptyNote('Nothing dated in the next 30 days.'));v.appendChild(s4);
+  const s5=el('div','sec');s5.appendChild(el('h3',null,'Open tasks'));
+  const open=T.filter(t=>!t.done).sort((a,b)=>(a.due||'9')<(b.due||'9')?-1:1).slice(0,6);
+  s5.appendChild(open.length?list(open.map(t=>[t.due&&t.due<k?'exam':'milestone',t.title,(t.due?fmtD(t.due)+' · '+relD(dleft(t.due)):'no date')+(t.course?' · '+t.course:'')])):emptyNote('No open tasks. Press N to add one.'));
+  v.appendChild(s5)};
+/* ---------- courses ---------- */
+vCourses=function(){const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Courses'));
+  v.appendChild(el('p','sub','Tap a card for slots, outcomes, assessment split and your linked tasks.'));
+  const tot=CODES.reduce((n,c)=>n+cred(C[c]),0);
+  v.appendChild(el('p','mu',CODES.length+' registered codes · '+tot+' credits with an L-T-P-C line in the syllabus · Room E211'));
+  const g=el('div','boxes');g.style.marginTop='12px';
+  CODES.forEach(code=>{const c=C[code],sl=allSlots(code),b=el('button','box');
+    b.appendChild(el('div','dt t-milestone',code+(c.lt?' · '+c.lt:'')));
+    b.appendChild(el('div','ti',c.n));
+    b.appendChild(el('div','lo',[c.f?'Theory: '+c.f:'',c.fl?'Lab: '+c.fl:''].filter(Boolean).join('\n')));
+    b.appendChild(el('div','lo',sl.length?sl.length+' blocks/week · '+dur(Math.round(hoursWk(code)))+' · '+sl.map(s=>DN[s.d]).filter((x,i,a)=>a.indexOf(x)===i).join(' '):'No slot in the weekly grid'));
+    if(c.e){b.appendChild(wbar(c.e))}
+    const nx=nextOf(code);b.appendChild(el('div','lo',nx?'Next: '+fmtD(nx.k)+' '+slotT(nx.a,nx.b):'—'));
+    b.onclick=()=>courseDetail(code);g.appendChild(b)});
+  v.appendChild(g);
+  const s=el('div','sec');s.appendChild(el('h3',null,'Timetable-only blocks'));
+  s.appendChild(list(Object.keys(C).filter(c=>CODES.indexOf(c)<0).map(c=>['special',C[c].n,C[c].note||''])));v.appendChild(s)};
+/* ---------- faculty hub ---------- */
+function vFac(){const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Faculty'));
+  v.appendChild(el('p','sub','Everyone named on the uploaded timetable, with the courses and slots they touch.'));
+  v.appendChild(card('Class advisors',list([['milestone','Mr. M. Pushparajan','9944685515'],['milestone','Mr. A. Srinivaas','9488055220']])));
+  const m=facMap(),g=el('div','boxes');g.style.marginTop='12px';
+  Object.keys(m).sort().forEach(n=>{const b=el('button','box'),cs=Object.keys(m[n].c);
+    let sl=0;cs.forEach(c=>sl+=allSlots(c).length);
+    b.appendChild(el('div','dt t-event',PHONE[n]?'Class advisor':'Faculty'));
+    b.appendChild(el('div','ti',n));
+    b.appendChild(el('div','lo',cs.map(c=>C[c].n+' ('+m[n].c[c]+')').join('\n')));
+    b.appendChild(el('div','lo',sl+' blocks/week · '+(PHONE[n]||'no number in sources')));
+    b.onclick=()=>facDetail(n);g.appendChild(b)});
+  v.appendChild(g);
+  v.appendChild(el('p','mu','Only two phone numbers appear in the uploaded timetable (the class advisors). No other contact details are in the sources, so none are shown.'))}
+/* ---------- exams ---------- */
+vExams=function(){const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Exams and assessment'));
+  v.appendChild(el('p','sub','Every dated assessment in the academic calendar, plus the weighting each course carries.'));
+  const rows=[];Object.keys(EV).sort().forEach(k=>evs(k).forEach(e=>{if(e[0]==='exam'||e[0]==='milestone')rows.push([k,e[0],e[1]])}));
+  const g=el('div','boxes');
+  rows.forEach(([k,t,x])=>{const n=dleft(k),b=el('button','box'+(n<0?' pastb':''));
+    b.appendChild(el('div','dt t-'+t,t==='exam'?'Exam':'Milestone'));
+    b.appendChild(el('div','ti',x));b.appendChild(el('div','lo',fmtD(k)));
+    b.appendChild(el('div','lo',relD(n)+(t==='exam'&&n>0?' · '+Math.ceil(n/7)+' weeks':'')));
+    b.onclick=()=>dayPanel(k);g.appendChild(b)});
+  v.appendChild(g);
+  const s=el('div','sec');s.appendChild(el('h3',null,'Exam timetable'));
+  const sc=el('div','scroll'),t=el('table');
+  let h='<tr><th>Date</th><th>Day</th><th>Class day</th><th>Assessment</th><th>Applies to</th><th>Countdown</th></tr>';
+  rows.forEach(([k,ty,x])=>{const n=dleft(k);h+='<tr'+(n<0?' style="opacity:.5"':'')+'><td class="f">'+esc(fmtD(k).slice(4))+'</td><td>'+DN[parse(k).getDay()]+'</td><td>'+(cd(k)||'—')+'</td><td style="text-align:left">'+esc(x)+'</td><td>'+(ty==='exam'?'Year III ARE, Sem V':'Programme-wide')+'</td><td>'+esc(relD(n))+'</td></tr>'});
+  t.innerHTML=h;sc.appendChild(t);s.appendChild(sc);v.appendChild(s);
+  const s2=el('div','sec');s2.appendChild(el('h3',null,'Weighting by course'));
+  CODES.filter(c=>C[c].e).forEach(code=>{const c=C[code],d=el('div','card');d.style.marginBottom='10px';
+    d.appendChild(el('div','k',code+' · '+c.n+(c.lt?' · '+c.lt:'')));
+    d.appendChild(wbar(c.e));d.appendChild(wlegend(c.e));
+    const int=c.e.filter(x=>x[0]!=='End Semester').reduce((n,x)=>n+x[1],0);
+    d.appendChild(el('p','mu','Internal '+int+' · End semester '+(100-int)));
+    d.style.cursor='pointer';d.onclick=()=>courseDetail(code);s2.appendChild(d)});
+  v.appendChild(s2);
+  v.appendChild(el('p','mu','The calendar gives one mid-term window for higher semesters (17 Aug 2026) and end-semester commencement for Third Years (26 Oct 2026). Separate Periodical 1 / Periodical 2 dates and a subject-wise end-semester timetable are not in the uploaded sources, so no dates are invented for them.'))};
+/* ---------- events grid ---------- */
+vEvents=function(){const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Holidays and events'));
+  v.appendChild(el('p','sub','Everything dated in the academic calendar between commencement and the even-semester start.'));
+  let f=P.evf||'all';
+  const ch=el('div','chips');
+  [['all','All'],['holiday','Holidays'],['event','Campus events'],['special','Special timetable'],['exam','Exams'],['milestone','Milestones']].forEach(([id,lab])=>{
+    const b=el('button','chip',lab);b.setAttribute('aria-pressed',f===id);b.onclick=()=>{P.evf=id;save();render()};ch.appendChild(b)});
+  v.appendChild(ch);
+  const rows=[];Object.keys(EV).sort().forEach(k=>evs(k).forEach(e=>{if(f==='all'||e[0]===f)rows.push([k,e[0],e[1]])}));
+  const byM={};rows.forEach(r=>{const d=parse(r[0]),key=MN[d.getMonth()]+' '+d.getFullYear();(byM[key]=byM[key]||[]).push(r)});
+  Object.keys(byM).forEach(m=>{const s=el('div','sec');s.appendChild(el('h3',null,m+' · '+byM[m].length));
+    const g=el('div','boxes');byM[m].forEach(([k,t,x])=>{const n=dleft(k),b=el('button','box'+(n<0?' pastb':''));
+      b.appendChild(el('div','dt t-'+t,t==='special'?'Special timetable':t[0].toUpperCase()+t.slice(1)));
+      b.appendChild(el('div','ti',x));b.appendChild(el('div','lo',fmtD(k)+' · '+relD(n)));
+      const dd=effDay(k);b.appendChild(el('div','lo',dd?(cd(k)?'Class day '+cd(k):'Working day')+' · runs '+DN[dd]+"'s timetable":'No classes'));
+      b.onclick=()=>dayPanel(k);g.appendChild(b)});
+    s.appendChild(g);v.appendChild(s)});
+  if(!rows.length)v.appendChild(emptyNote('Nothing of that type in the calendar.'))};
+/* ---------- marks / GPA ---------- */
+const GP=[[90,10,'O'],[80,9,'A+'],[70,8,'A'],[60,7,'B+'],[50,6,'B'],[45,5,'C'],[40,4,'P'],[0,0,'F']];
+function vMarks(){const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Marks and GPA'));
+  v.appendChild(el('p','sub','Enter what you score in each component. Weights come from the syllabus evaluation patterns; everything you type stays on this device.'));
+  P.marks=P.marks||{};let tp=0,tc=0;
+  CODES.filter(c=>C[c].e).forEach(code=>{const c=C[code],cr=cred(c)||0,m=P.marks[code]=P.marks[code]||{};
+    const d=el('div','card');d.style.marginBottom='10px';
+    d.appendChild(el('div','k',code+' · '+c.n+' · '+cr+' credits'));
+    const r=el('div','row');
+    c.e.forEach((x,i)=>{const w=el('div');w.appendChild(el('div','mu',x[0]+' / '+x[1]));
+      const inp=el('input');inp.type='number';inp.min=0;inp.max=x[1];inp.step='0.5';inp.value=m[i]==null?'':m[i];
+      inp.oninput=()=>{const val=inp.value===''?null:Math.max(0,Math.min(x[1],+inp.value));m[i]=val;save();scoreOut(code)};
+      w.appendChild(inp);r.appendChild(w)});
+    d.appendChild(r);const out=el('div');out.id='sc-'+code;d.appendChild(out);v.appendChild(d)});
+  const tot=el('div','card');tot.id='gpa';v.appendChild(tot);
+  CODES.filter(c=>C[c].e).forEach(scoreOut);gpaOut()}
+function scoreOut(code){const c=C[code],m=(P.marks||{})[code]||{},o=$('#sc-'+code);if(!o)return;
+  let got=0,wOf=0;c.e.forEach((x,i)=>{if(m[i]!=null){got+=m[i];wOf+=x[1]}});
+  o.innerHTML='';if(!wOf){o.appendChild(el('p','mu','No marks entered yet.'));gpaOut();return}
+  const pct=got/wOf*100,g=GP.find(x=>pct>=x[0]);
+  o.appendChild(el('p','mu','Entered '+got+' of '+wOf+' · '+pct.toFixed(1)+'% so far · indicative grade '+g[2]+(wOf<100?' (only '+wOf+'% of the course assessed)':'')));
+  const b=el('div','bar'),i=el('i');i.style.width=Math.min(100,pct)+'%';b.appendChild(i);o.appendChild(b);gpaOut()}
+function gpaOut(){const o=$('#gpa');if(!o)return;let pts=0,crs=0,done=[];
+  CODES.filter(c=>C[c].e).forEach(code=>{const c=C[code],m=(P.marks||{})[code]||{};let got=0,wOf=0;
+    c.e.forEach((x,i)=>{if(m[i]!=null){got+=m[i];wOf+=x[1]}});
+    if(wOf>=50){const pct=got/wOf*100,g=GP.find(x=>pct>=x[0]),cr=cred(c)||0;pts+=g[1]*cr;crs+=cr;done.push(c.n+' → '+g[2])}});
+  o.innerHTML='';o.appendChild(el('div','k','Indicative GPA'));
+  o.appendChild(el('div','big',crs?(pts/crs).toFixed(2):'—'));
+  o.appendChild(el('p','mu',crs?'Based on '+crs+' credits where at least half the assessment is filled in: '+done.join(' · '):'Fill in at least half of a course\u2019s components to include it. This is your own projection, not an official result.'))}
+/* ---------- resources ---------- */
+vRes=function(){const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Resources'));
+  v.appendChild(el('p','sub','Source documents, reading lists pulled from the syllabus, and your own backup.'));
+  v.appendChild(card('Uploaded sources',list([
+    ['event','Semester_V_Class_Time_Table_edited.pdf','Weekly grid, 12 slots, course codes, theory and lab faculty, Room E211, class advisor numbers'],
+    ['event','Academic-Calendar-AY-2026-2027.pdf','Working days, Year III class-day numbering, holidays, campus events, special-timetable Saturdays, mid-term and end-semester dates'],
+    ['event','Semester-5_Syllabus_B_Tech_Automation_Robotics.pdf','Objectives, outcomes, units, lab exercises, books and evaluation patterns'],
+    ['holiday','B_Tech__2024_ARE.xlsx','Not loaded — a 2024-batch student roster of other students\u2019 names and personal email addresses, with no Semester 6 academic data']])));
+  const s1=el('div','sec');s1.appendChild(el('h3',null,'Reading list'));
+  const g=el('div','boxes');CODES.filter(c=>C[c].b).forEach(code=>{const c=C[code],b=el('button','box');
+    b.appendChild(el('div','dt t-milestone',code));b.appendChild(el('div','ti',c.n));
+    c.b.forEach(x=>b.appendChild(el('div','lo','· '+x)));b.onclick=()=>courseDetail(code);g.appendChild(b)});
+  s1.appendChild(g);v.appendChild(s1);
+  const s3=el('div','sec');s3.appendChild(el('h3',null,'Lab exercise sheets'));
+  const g3=el('div','boxes');CODES.filter(c=>C[c].lab).forEach(code=>{const c=C[code],b=el('button','box');
+    b.appendChild(el('div','dt t-special',code));b.appendChild(el('div','ti',c.n));
+    b.appendChild(el('div','lo',c.lab.length+' listed experiments'));
+    c.lab.slice(0,4).forEach((x,i)=>b.appendChild(el('div','lo',(i+1)+'. '+x)));
+    if(c.lab.length>4)b.appendChild(el('div','lo','…and '+(c.lab.length-4)+' more'));
+    b.onclick=()=>pan(p=>{p.appendChild(el('h3',null,c.n+' — lab exercises'));p.appendChild(list(c.lab.map((x,i)=>['event',(i+1)+'. '+x,''])))});g3.appendChild(b)});
+  s3.appendChild(g3);v.appendChild(s3);
+  const s=el('div','sec');s.appendChild(el('h3',null,'Your data'));
+  const ta=el('textarea');ta.id='io';ta.value=JSON.stringify({prefs:P,tasks:T},null,1);
+  const r=el('div','row');const imp=el('button','btn','Import from box');
+  imp.onclick=()=>{try{const o=JSON.parse(ta.value);if(Array.isArray(o.tasks))T=o.tasks;if(o.prefs)P=Object.assign(P,o.prefs);save();applyPrefs();alert('Imported.');render()}catch(e){alert('That is not valid JSON.')}};
+  const rs=el('button','btn g','Reset personal data');
+  rs.onclick=()=>{if(confirm('Delete your tasks, notes, marks and preferences? Official academic data is unaffected.')){T=[];P={theme:'',h24:false};save();applyPrefs();render()}};
+  const th=el('button','btn g','Toggle 12/24-hour');th.onclick=()=>{P.h24=!P.h24;save();render()};
+  r.append(imp,rs,th);s.append(ta,r);
+  s.appendChild(el('p','mu','Copy the box to back up tasks, notes and marks. Calendar, timetable and syllabus data is built in and is never overwritten by an import.'));
+  v.appendChild(s)};
+/* ---------- data notes + your own notes ---------- */
+vData=function(){const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Data notes and conflicts'));
+  v.appendChild(el('p','sub','Where the uploaded sources disagree or fall short, both readings are kept instead of one being silently chosen.'));
+  NOTES.forEach(([t,b])=>{const c=el('div','card');c.style.marginBottom='10px';c.appendChild(el('div','k','From sources · '+t));c.appendChild(el('p','mu',b));v.appendChild(c)});
+  v.appendChild(card('Class-day numbering check',el('p','mu','Class days are recomputed from the rule "weekdays that are not holidays, plus Saturdays carrying a weekday timetable". For Year III this reproduces the calendar exactly: CD 6 on 30 Jun, CD 31 on 31 Jul, CD 52 on 31 Aug, CD 67 on 21 Sep, CD 74 on 30 Sep and CD 90 on 23 Oct 2026.')));
+  P.notes=P.notes||[];
+  const s=el('div','sec');s.appendChild(el('h3',null,'Your notes ('+P.notes.length+')'));
+  const f=el('div','card'),r1=el('div','row');
+  const ti=el('input');ti.id='nTitle';ti.placeholder='Note title';const bd=el('input');bd.id='nBody';bd.placeholder='What did you find or change?';
+  r1.append(ti,bd);const add=el('button','btn','Add note');
+  add.onclick=()=>{if(!ti.value.trim())return;P.notes.push({t:ti.value.trim(),b:bd.value.trim(),at:tISO()});save();render()};
+  f.append(r1,add);s.appendChild(f);
+  P.notes.slice().reverse().forEach((n,i)=>{const idx=P.notes.length-1-i,c=el('div','card');c.style.marginTop='10px';
+    c.appendChild(el('div','k','Yours · '+fmtD(n.at)));c.appendChild(el('div',null,n.t));if(n.b)c.appendChild(el('p','mu',n.b));
+    const d=el('button','ib','Delete');d.onclick=()=>{P.notes.splice(idx,1);save();render()};c.appendChild(d);s.appendChild(c)});
+  if(!P.notes.length)s.appendChild(emptyNote('Nothing yet. Your notes are stored separately from the source data and are always labelled "Yours".'));
+  v.appendChild(s)};
+/* ---------- themes, type, live clock, shortcuts ---------- */
+const THEMES=[['','Follow system'],['light','Light'],['dark','Dark'],['slate','Slate blue'],['sepia','Paper'],['forest','Forest'],['rose','Rose'],['contrast','High contrast']];
+const FONTS=[['','Sans (default)'],['serif','Serif reading'],['round','Rounded']];
+const SIZES=[['','Normal'],['l','Large'],['xl','Extra large']];
+function applyPrefs(){const h=document.documentElement;
+  P.theme?h.setAttribute('data-theme',P.theme):h.removeAttribute('data-theme');
+  P.font?h.setAttribute('data-font',P.font):h.removeAttribute('data-font');
+  P.fs?h.setAttribute('data-fs',P.fs):h.removeAttribute('data-fs')}
+function themePanel(){pan(p=>{p.appendChild(el('h3',null,'Appearance'));
+  const grp=(lab,opts,key)=>{const s=el('div','sec');s.appendChild(el('h3',null,lab));const w=el('div');
+    opts.forEach(([id,name])=>{const b=el('button','pill'+((P[key]||'')===id?' on':''),name);
+      b.onclick=()=>{P[key]=id;save();applyPrefs();themePanel();render()};w.appendChild(b)});
+    s.appendChild(w);p.appendChild(s)};
+  grp('Theme',THEMES,'theme');grp('Typeface',FONTS,'font');grp('Text size',SIZES,'fs');
+  const s=el('div','sec');s.appendChild(el('h3',null,'Clock'));
+  const b=el('button','pill'+(P.h24?' on':''),P.h24?'24-hour':'12-hour');b.onclick=()=>{P.h24=!P.h24;save();themePanel();render()};
+  s.appendChild(b);p.appendChild(s)})}
+VIEWS.splice(4,0,['faculty','Faculty']);VIEWS.splice(6,0,['marks','Marks']);
+RENDER.faculty=vFac;RENDER.marks=vMarks;
+const clk=el('div','clock');clk.innerHTML='<b></b><span></span>';document.querySelector('.hd').insertBefore(clk,$('#btnSearch'));
+$('#btnSearch').classList.remove('sp');
+function tick(){const d=new Date(),mn=mins(),k=tISO(),es=entries(k);
+  let st='';const nE=es.find(x=>mn>=x.s&&mn<x.e),xE=es.find(x=>mn<x.s);
+  st=nE?C[nE.c].n+' · '+dur(nE.e-mn)+' left':xE?'Next: '+C[xE.c].n+' in '+dur(xE.s-mn):effDay(k)?'No more classes today':'No classes today';
+  clk.querySelector('b').textContent=hms(d.getHours()*60+d.getMinutes());
+  clk.querySelector('span').textContent=st;
+  if(cur==='dash'||cur==='tt')render()}
+$('#btnTheme').onclick=themePanel;
+$('#ovHelp').querySelector('ul').innerHTML+='<li><kbd>F</kbd><span>Faculty</span></li><li><kbd>M</kbd><span>Marks and GPA</span></li><li><kbd>V</kbd><span>Events</span></li><li><kbd>A</kbd><span>Tasks</span></li><li><kbd>X</kbd><span>Data notes</span></li><li><kbd>Y</kbd><span>Appearance</span></li><li><kbd>1</kbd>…<kbd>9</kbd><span>Jump to tab by position</span></li>';
+document.addEventListener('keydown',e=>{const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea'||tag==='select'||e.metaKey||e.ctrlKey||e.altKey)return;
+  const m={f:'faculty',m:'marks',v:'events',a:'tasks',x:'data'}[e.key.toLowerCase()];
+  if(m){go(m);return}
+  if(e.key.toLowerCase()==='y'){themePanel();return}
+  if(/^[1-9]$/.test(e.key)&&VIEWS[+e.key-1])go(VIEWS[+e.key-1][0])});
+applyPrefs();render();tick();setInterval(tick,20000);
+
+/* ================= Semester VI final layer ================= */
+const CONTACTS=[
+ ['Mr. M. Pushparajan — Class Advisor','9944685515'],
+ ['Dr. S. Rakesh Kumar — Class Advisor','8122280350']
+];
+function digitsOnly(p){return String(p).replace(/\D/g,'')}
+function waNum(p){let d=digitsOnly(p);if(d.length===10)d='91'+d;else if(d.length===11&&d[0]==='0')d='91'+d.slice(1);return d}
+function isMobileUA(){return /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent||'')}
+function contactAction(p){if(isMobileUA())location.href='tel:+'+waNum(p);else window.open('https://wa.me/'+waNum(p),'_blank','noopener')}
+function courseMeta(code){return C[code]||{n:code,room:'—',note:'No additional course details are currently supplied.'}}
+function displayCourse(code){const c=courseMeta(code);return c.n||code}
+function slotRowHtml(code){const c=courseMeta(code);return '<strong>'+esc(c.n)+'</strong><div class="tt-code">'+esc(code)+' · '+esc(c.f||c.fl||c.room||'')+'</div>'}
+function vTT(){
+ const v=$('#view'),today=new Date(),k=iso(today);v.innerHTML='';
+ v.appendChild(el('h2',null,'Timetable'));
+ v.appendChild(el('p','sub','Even Semester 2026–2027 · B.Tech ARE · Year III · Semester VI · Class Room E211 · 12 slots, Monday–Friday'));
+ if(ttDay===null)ttDay=effDay(k)||1;
+ const ch=el('div','chips');
+ [1,2,3,4,5].forEach(d=>{const b=el('button','chip',DN[d]);b.setAttribute('aria-pressed',d===ttDay);b.onclick=()=>{ttDay=d;render()};ch.appendChild(b)});
+ const tb=el('button','chip','Today');tb.onclick=()=>{ttDay=effDay(k)||1;render()};ch.appendChild(tb);v.appendChild(ch);
+ const dd=ttDay,u=el('ul','l');
+ TT[dd].forEach(([a,b,code])=>{
+   const li=el('li');li.appendChild(el('span','tag',slotT(a,b)));
+   const m=el('div');m.style.flex='1';
+   m.appendChild(el('div',null,displayCourse(code)));
+   m.appendChild(el('div','mu',[code,courseMeta(code).f||'',courseMeta(code).fl?'Lab: '+courseMeta(code).fl:'',courseMeta(code).room||''].filter(Boolean).join(' · ')));
+   if(courseMeta(code).note)m.appendChild(el('div','mu',courseMeta(code).note));
+   const isNow=effDay(k)===dd&&(()=>{const mn=today.getHours()*60+today.getMinutes();return mn>=SL[a-1][0]&&mn<SL[b-1][1]})();
+   if(isNow)li.style.fontWeight='600';li.appendChild(m);u.appendChild(li)
+ });
+ v.appendChild(card(DN[dd]+' · '+TT[dd].length+' scheduled blocks',u));
+ const w=el('div','sec wk');w.appendChild(el('h3',null,'Full week timetable'));
+ const sc=el('div','scroll'),t=el('table');let h='<tr><th>Day</th>';
+ SL.forEach((x,i)=>h+='<th>Slot '+(i+1)+'<br>'+hms(x[0])+'–'+hms(x[1])+'</th>');h+='</tr>';
+ for(let d=1;d<=5;d++){
+  h+='<tr><td class="f">'+DN[d]+'</td>';let i=1;const map={};TT[d].forEach(([a,b,c])=>map[a]=[b,c]);
+  while(i<=12){
+   if(map[i]){const [b,code]=map[i],span=b-i+1;
+    h+='<td class="tt-cell" colspan="'+span+'">'+slotRowHtml(code)+'</td>';i=b+1}
+   else{h+='<td class="free">–</td>';i++}
+  }h+='</tr>';
+ }
+ t.innerHTML=h;sc.appendChild(t);w.appendChild(sc);
+ const note=el('p','mu');note.style.marginTop='8px';note.textContent='The PE-I and PE-II blocks show the available elective options; students attend their selected option. Saturday classes follow the special weekday timetable listed in the academic calendar. Blank slots are left empty.';w.appendChild(note);v.appendChild(w);
+ const legend=el('div','sec');legend.appendChild(el('h3',null,'Elective options'));
+ legend.appendChild(list([
+ ['special','PE-I · 23ARE342 Robot Operating System — Dr Siva Shankar G · E211','or 23ARE337 Autonomous Vehicles 1 — Dr Rammohan S · E209'],
+ ['special','PE-II · 23MEE335 Modelling and Simulation of Engineering Systems — Dr Padmanaban R · E209','or 23ARE363 Smart Manufacturing — Dr Sumesh A · E211; 23ARE362 Industry 4.0 — Dr Ramachandran K I · E302']
+ ]));v.appendChild(legend);
+}
+function vCourses(){
+ const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Courses and syllabus'));
+ v.appendChild(el('p','sub','Semester VI course details from the uploaded timetable and Semester 6 syllabus. Missing source details remain blank instead of being guessed.'));
+ const groups=[
+  ['Core and common timetable courses',['23MEE306','23ARE311','23ARE312','23ARE313','23LSE311','23LAW300','23ARE399','23LIV490']],
+  ['Professional Elective I',['23ARE342','23ARE337']],
+  ['Professional Elective II',['23MEE335','23ARE363','23ARE362']],
+  ['Syllabus-only entries',['19SSK311','19MNG300']]
+ ];
+ groups.forEach(([label,codes])=>{
+  const sec=el('div','sec');sec.appendChild(el('h3',null,label));const g=el('div','boxes');
+  codes.forEach(code=>{
+   const c=C[code],b=el('button','box');b.appendChild(el('div','dt t-milestone',code+(c.lt?' · L-T-P-C '+c.lt:'')));
+   b.appendChild(el('div','ti',c.n));
+   b.appendChild(el('div','lo',[c.f?'Theory: '+c.f:'',c.fl?'Lab: '+c.fl:'',c.room&&c.room!=='—'?'Room: '+c.room:''].filter(Boolean).join('\n')||'Faculty / room details not supplied'));
+   if(c.sy)b.appendChild(el('div','lo','Syllabus code: '+c.sy));
+   b.onclick=()=>courseDetail(code);g.appendChild(b)
+  });
+  sec.appendChild(g);v.appendChild(sec)
+ });
+ const f=el('div','sec');f.appendChild(el('h3',null,'Faculty from the VI Semester timetable'));
+ const seen={};const rows=[];
+ Object.keys(C).forEach(code=>{const c=C[code];if(code.length<5)return;[c.f,c.fl].filter(Boolean).forEach(x=>{const k=code+'|'+x;if(!seen[k]){seen[k]=1;rows.push(['event',x,code+' — '+c.n])}})});
+ f.appendChild(list(rows));v.appendChild(f);
+}
+courseDetail=function(code){
+ pan(p=>{
+  const c=courseMeta(code);p.appendChild(el('h3',null,code+' — '+c.n));
+  const meta=[];if(c.lt)meta.push('L-T-P-C '+c.lt);if(c.sy)meta.push('Syllabus document code '+c.sy);if(c.room)meta.push('Room '+c.room);
+  p.appendChild(el('p','mu',meta.join(' · ')||'Course details not supplied'));
+  const dl=el('dl','kv');
+  const row=(k,val)=>{if(val&&val!=='—'){dl.appendChild(el('dt',null,k));dl.appendChild(el('dd',null,val))}};
+  row('Theory faculty',c.f);row('Lab faculty',c.fl);
+  const sl=allSlots(code);row('Weekly load',sl.length?sl.length+' blocks · '+dur(Math.round(hoursWk(code))):'No individual slot in the weekly grid');
+  if(cred(c))row('Credits',cred(c));if(dl.childNodes.length)p.appendChild(dl);
+  if(c.note)p.appendChild(el('p','mu','Source note: '+c.note));
+  if(c.e){const s=el('div','sec');s.appendChild(el('h3',null,'Evaluation pattern'));s.appendChild(wbar(c.e));s.appendChild(wlegend(c.e));p.appendChild(s)}
+  if(c.co){const s=el('div','sec');s.appendChild(el('h3',null,'Course outcomes'));s.appendChild(list(c.co.map(x=>['milestone',x])));p.appendChild(s)}
+  if(c.u){const s=el('div','sec');s.appendChild(el('h3',null,'Syllabus'));s.appendChild(list(c.u.map(x=>['event',x])));p.appendChild(s)}
+  if(c.lab){const s=el('div','sec');s.appendChild(el('h3',null,'Lab practice / experiments'));s.appendChild(list(c.lab.map((x,i)=>['special',(i+1)+'. '+x])));p.appendChild(s)}
+  if(c.b){const s=el('div','sec');s.appendChild(el('h3',null,'Reference books'));s.appendChild(list(c.b.map(x=>['event',x])));p.appendChild(s)}
+  const mine=T.filter(t=>t.course===code&&!t.done),s2=el('div','sec');s2.appendChild(el('h3',null,'Your open tasks ('+mine.length+')'));
+  s2.appendChild(mine.length?list(mine.map(t=>['milestone',t.title,t.due?fmtD(t.due):'no date'])):emptyNote('None yet. Add a task and link it to this course.'));p.appendChild(s2);
+  const act=el('div','row');act.style.marginTop='14px';act.appendChild(lnk('Open Timetable',()=>{closeAll();ttDay=sl.length?sl[0].d:1;go('tt')}));act.appendChild(lnk('Open Marks',()=>{closeAll();go('marks')}));p.appendChild(act);
+ })
+};
+vExams=function(){
+ const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Exams and assessment'));
+ v.appendChild(el('p','sub','Only academic-calendar dates and assessment weightings supported by the Semester 6 syllabus are shown.'));
+ const rows=[];Object.keys(EV).sort().forEach(k=>evs(k).forEach(e=>{if(e[0]==='exam'||e[0]==='milestone')rows.push([k,e[0],e[1]])}));
+ v.appendChild(card('Academic calendar milestones',list(rows.map(([k,t,x])=>[t,x,fmtD(k)]))));
+ const s=el('div','sec');s.appendChild(el('h3',null,'Evaluation patterns'));
+ Object.keys(C).filter(code=>C[code].e).forEach(code=>{
+  const c=C[code],d=el('details'),su=el('summary');su.textContent=code+' — '+c.n;d.appendChild(su);
+  d.appendChild(list(c.e.map(x=>['exam',x[0],x[1]+' marks'])));s.appendChild(d)
+ });v.appendChild(s);
+ v.appendChild(el('p','mu','The academic calendar gives the higher-semester mid-term commencement as 27 January 2027 and end-semester commencement as 31 March 2027. No subject-wise examination timetable or Periodical 1 / Periodical 2 dates are included in the uploaded sources.'));
+};
+vRes=function(){
+ const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Resources and data'));
+ v.appendChild(el('p','sub','Semester VI source documents and timetable file controls.'));
+ v.appendChild(card(null,list([
+ ['event','VI Sem ARE.pdf','Official Semester VI weekly timetable · 12 slots · course titles, elective options, faculty and rooms · page 1'],
+ ['event','Semester 6 _ Syllabus.pdf','Semester 6 syllabus · course outcomes, units, lab practice, reference books and evaluation patterns · 8 pages'],
+ ['event','Academic-Calendar-AY-2026-2027.pdf','Academic calendar · Year III class days, special Saturday timetables, holidays, winter break, mid-term and end-semester commencement']
+ ])));
+ const sec=el('div','sec');sec.appendChild(el('h3',null,'Timetable CSV'));
+ sec.appendChild(el('p','mu','Export a CSV backup, edit its rows in a spreadsheet, then import it. The exported columns are day, slot_start, slot_end, course_code, course_title, faculty, room and activity. The import replaces the weekly timetable after validation. Known syllabus details remain attached to their course codes.'));
+ const row=el('div','row');
+ const ex=el('button','btn','Export timetable CSV');ex.onclick=exportTimetableCSV;
+ const im=el('button','btn g','Import timetable CSV');im.onclick=()=>$('#csvFile').click();
+ const reset=el('button','btn g','Restore source timetable');reset.onclick=()=>{if(confirm('Restore the Semester VI timetable and course details exactly as supplied in the uploaded sources?')){TT=JSON.parse(JSON.stringify(DEFAULT_TT));Object.keys(C).forEach(k=>delete C[k]);Object.assign(C,JSON.parse(JSON.stringify(DEFAULT_C)));CODES=Object.keys(C).filter(c=>/^\d{2}[A-Z]{3}\d/.test(c));save();IDX=null;render()}};
+ row.append(ex,im,reset);sec.appendChild(row);
+ v.appendChild(sec);
+ const personal=el('div','sec');personal.appendChild(el('h3',null,'Personal workspace data'));
+ const ta=el('textarea');ta.value=JSON.stringify({prefs:P,tasks:T},null,2);
+ const r=el('div','row'),imp=el('button','btn','Import personal backup'),rs=el('button','btn g','Reset personal data');
+ imp.onclick=()=>{try{const o=JSON.parse(ta.value);if(Array.isArray(o.tasks))T=o.tasks;if(o.prefs)P=Object.assign(P,o.prefs);save();render()}catch(e){alert('That is not valid JSON.')}};
+ rs.onclick=()=>{if(confirm('Clear Semester VI personal tasks and preferences?')){T=[];P={theme:'',h24:false};save();render()}};
+ r.append(imp,rs);personal.append(ta,r);personal.appendChild(el('p','mu','Personal tasks and preferences are stored locally in this browser. This workspace starts with empty personal tasks and preferences.'));v.appendChild(personal);
+};
+vData=function(){
+ const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Source notes and data gaps'));
+ v.appendChild(el('p','sub','Known source distinctions and missing fields. Empty fields are intentional; they can be filled when the department or faculty provides the information.'));
+ NOTES.forEach(([title,body])=>{const c=el('div','card');c.style.marginBottom='10px';c.appendChild(el('div','k',title));c.appendChild(el('p','mu',body));v.appendChild(c)});
+ v.appendChild(card('Class-day verification',el('p','mu','The calendar calculation starts on 16 November 2026 (CD 1) and reaches CD 90 on 30 March 2027. It includes the Saturday timetable changes on 21 Nov, 5 Dec, 19 Dec, 9 Jan, 30 Jan, 6 Feb, 20 Feb, 6 Mar and 20 Mar, and excludes the January winter break.')));
+};
+vFac=function(){
+ const v=$('#view');v.innerHTML='';v.appendChild(el('h2',null,'Faculty and class advisors'));
+ v.appendChild(el('p','sub','Faculty names are taken from the Semester VI timetable. Phone numbers are shown only where the timetable explicitly supplies them.'));
+ const cg=el('div','boxes');
+ CONTACTS.forEach(([name,phone])=>{const b=el('div','box contact');b.appendChild(el('div','dt t-event','Class advisor'));b.appendChild(el('div','ti',name));b.appendChild(el('div','lo',phone));const r=el('div','row');const call=document.createElement('a');call.className='ib';call.textContent='Call';call.href='tel:+91'+digitsOnly(phone);r.appendChild(call);const wa=document.createElement('a');wa.className='ib';wa.textContent='WhatsApp';wa.target='_blank';wa.rel='noopener';wa.href='https://wa.me/91'+digitsOnly(phone);r.appendChild(wa);b.appendChild(r);cg.appendChild(b)});
+ v.appendChild(cg);
+ const m=facMap(),g=el('div','boxes');g.style.marginTop='12px';
+ Object.keys(m).sort().forEach(n=>{const b=el('button','box'),codes=Object.keys(m[n].c);let count=0;codes.forEach(c=>count+=allSlots(c).length);
+  b.appendChild(el('div','dt t-milestone','From timetable'));b.appendChild(el('div','ti',n));
+  b.appendChild(el('div','lo',codes.map(c=>C[c].n+' ('+m[n].c[c]+')').join('\n')));
+  b.appendChild(el('div','lo',count+' timetable blocks/week'));b.onclick=()=>facDetail(n);g.appendChild(b)
+ });v.appendChild(g);
+};
+index=function(){
+ const out=[];
+ Object.keys(C).forEach(code=>{const c=C[code];out.push({t:c.n,s:code+' · Course'+(c.f?' · '+c.f:'')+(c.lt?' · L-T-P-C '+c.lt:''),v:'courses'});[c.f,c.fl].filter(Boolean).forEach(f=>out.push({t:f,s:'Faculty · '+c.n,v:'faculty'}))});
+ for(let d=1;d<=5;d++)TT[d].forEach(([a,b,c])=>out.push({t:displayCourse(c),s:'Class · '+DN[d]+' '+slotT(a,b)+' · '+c,v:'tt'}));
+ Object.keys(EV).forEach(k=>evs(k).forEach(e=>{const d=parse(k);out.push({t:e[1],s:e[0]+' · '+fmtD(k),v:e[0]==='exam'?'exams':'events'})}));
+ Object.keys(C).forEach(code=>{const c=C[code];(c.u||[]).concat(c.lab||[]).forEach(x=>out.push({t:x.slice(0,100),s:'Syllabus · '+code,v:'courses'}))});
+ T.forEach(t=>out.push({t:t.title,s:'Task · '+(t.due||'no date'),v:'tasks'}));
+ return out;
+};
+CODES=Object.keys(C).filter(c=>/^\d{2}[A-Z]{3}\d/.test(c));
+/* CSV import/export */
+function csvEscape(v){const s=String(v??'');return /[",\n\r]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
+function exportTimetableCSV(){
+ const rows=[['day','slot_start','slot_end','course_code','course_title','faculty','room','activity']];
+ for(let d=1;d<=5;d++)TT[d].forEach(([a,b,code])=>{const c=courseMeta(code);rows.push([DN[d],a,b,code,c.n||'',c.f||c.fl||'',c.room||'',c.note||''])});
+ const csv='\uFEFF'+rows.map(r=>r.map(csvEscape).join(',')).join('\r\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='S6_ARE_Timetable.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function parseCSV(text){
+ const rows=[];let row=[],field='',quoted=false;
+ for(let i=0;i<text.length;i++){const ch=text[i],next=text[i+1];
+  if(quoted){if(ch==='"'&&next==='"'){field+='"';i++}else if(ch==='"')quoted=false;else field+=ch}
+  else if(ch==='"')quoted=true;
+  else if(ch===','){row.push(field);field=''}
+  else if(ch==='\n'){row.push(field);if(row.some(x=>x.trim()!==''))rows.push(row);row=[];field=''}
+  else if(ch!=='\r')field+=ch;
+ }
+ if(field!==''||row.length){row.push(field);if(row.some(x=>x.trim()!==''))rows.push(row)}
+ return rows;
+}
+function slotNumber(v,edge){
+ const s=String(v||'').trim();if(/^\d{1,2}$/.test(s)){const n=+s;if(n>=1&&n<=12)return n}
+ const m=s.match(/(\d{1,2})[:.](\d{2})\s*(am|pm)?/i);if(m){let h=+m[1],mi=+m[2],ap=(m[3]||'').toLowerCase();if(ap==='pm'&&h<12)h+=12;if(ap==='am'&&h===12)h=0;const mins=h*60+mi;
+  let idx=SL.findIndex(x=>edge==='end'?x[1]===mins:x[0]===mins);if(idx>=0)return idx+1;
+ }
+ return null;
+}
+function normalizeDay(s){const v=String(s||'').trim().toLowerCase();const i=DN.findIndex(x=>x.toLowerCase()===v.slice(0,3));return i>=1&&i<=5?i:null}
+async function importTimetableCSV(file){
+ const raw=await file.text(),rows=parseCSV(raw.replace(/^\uFEFF/,''));if(rows.length<2)throw new Error('The CSV has no timetable rows.');
+ const headers=rows[0].map(x=>x.trim().toLowerCase().replace(/[\s-]+/g,'_'));
+ const col=(r,...names)=>{for(const n of names){const i=headers.indexOf(n);if(i>=0)return (r[i]||'').trim()}return ''};
+ const next={1:[],2:[],3:[],4:[],5:[]},newCourses={};let accepted=0;
+ rows.slice(1).forEach((r,idx)=>{
+  if(!r.some(x=>String(x).trim()))return;
+  const d=normalizeDay(col(r,'day','weekday','day_name'));if(!d)throw new Error('Row '+(idx+2)+': day must be Monday–Friday.');
+  const code=col(r,'course_code','code','course');if(!code)throw new Error('Row '+(idx+2)+': course_code is required.');
+  const startRaw=col(r,'slot_start','start_slot','slot'),endRaw=col(r,'slot_end','end_slot')||startRaw;
+  const a=slotNumber(startRaw,'start'),b=slotNumber(endRaw,'end');if(!a||!b||b<a)throw new Error('Row '+(idx+2)+': slot_start / slot_end must be valid slot numbers (1–12) or matching slot times.');
+  const title=col(r,'course_title','title','subject'),faculty=col(r,'faculty','faculty_member'),room=col(r,'room','location'),activity=col(r,'activity','notes');
+  if(!C[code]&&!title)throw new Error('Row '+(idx+2)+': unknown course code '+code+' needs a course_title.');
+  if(!C[code])newCourses[code]={n:title,f:faculty,room:room||'—',note:activity||'Added from imported timetable CSV.'};
+  else{if(title)C[code].n=title;if(faculty)C[code].f=faculty;if(room)C[code].room=room;if(activity)C[code].note=activity}
+  next[d].push([a,b,code]);accepted++;
+ });
+ for(let d=1;d<=5;d++){next[d].sort((a,b)=>a[0]-b[0]);for(let i=1;i<next[d].length;i++)if(next[d][i][0]<=next[d][i-1][1])throw new Error(DN[d]+' has overlapping slots '+next[d][i-1][0]+'–'+next[d][i-1][1]+' and '+next[d][i][0]+'–'+next[d][i][1]+'.')}
+ Object.assign(C,newCourses);TT=next;CODES=Object.keys(C).filter(c=>/^\d{2}[A-Z]{3}\d/.test(c));save();IDX=null;render();alert('Imported '+accepted+' timetable block(s).');
+}
+$('#btnExport').onclick=exportTimetableCSV;
+$('#btnImport').onclick=()=>$('#csvFile').click();
+$('#csvFile').addEventListener('change',async e=>{const f=e.target.files&&e.target.files[0];if(f){try{await importTimetableCSV(f)}catch(err){alert('Could not import timetable: '+err.message)}e.target.value=''}});
+/* Keep all Semester VI views live against the current imported timetable. */
+render=function(){navBar();({dash:vDash,tt:vTT,cal:vCal,courses:vCourses,exams:vExams,events:vEvents,tasks:vTasks,res:vRes,data:vData,faculty:vFac,marks:vMarks})[cur]()};
+
+</script>
+</body>
+</html>
